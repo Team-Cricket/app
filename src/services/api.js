@@ -9,12 +9,13 @@ function responseHandler(response) {
   });
 }
 
-export function getEvents(userID) {
-  return fetch(`${EVENTS_URL}/${userID}`, {
+export function getEvents(userId) {
+  return fetch(`${EVENTS_URL}/${userId}`, {
     headers: { 'Content-Type': 'application/json' }
   })
     .then(responseHandler);
 }
+
 
 export function signUp(credentials) {
   return fetch(`${AUTH_URL}/signup`, {
@@ -33,3 +34,11 @@ export function signIn(credentials) {
   })
     .then(responseHandler);
 }
+
+export function deleteEvent(eventId) {
+  return fetch(`${EVENTS_URL}/${eventId}`, {
+    method: 'DELETE'
+  })
+    .then(responseHandler);
+}
+

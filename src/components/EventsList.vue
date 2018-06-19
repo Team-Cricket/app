@@ -1,6 +1,7 @@
 <template>
-  <div id="albums">
+  <div id="events">
     <h2>Events List</h2>
+    <button v-on:click="openNewEvent">add event</button>
     <pre v-if="error">{{ error }}</pre>
     <ul v-if="events !== null">
       <li
@@ -37,11 +38,25 @@ export default {
       .catch(err => {
         this.error = err;
       });
+  }, 
+  methods: {
+    openNewEvent() {
+      this.$router.push(`/event`);
+    }
   }
-};
+}
 </script>
 
 
-<style>
+<style scoped>
+
+div {
+  text-align: left;
+}
+
+ul {
+  list-style-type: none;
+}
+
 
 </style>
