@@ -5,14 +5,35 @@
       &nbsp;
       <router-link to="/dashboard">Dashboard</router-link>
       &nbsp;
-      <router-link to="/">Logout</router-link>
+      <router-link v-if="user" @click.prevent="handleLogout" to="/">Logout</router-link>
     </nav>
   </div>
 </template>
 
 <script>
 export default {
-
+  data() {
+    return {
+      user: null
+    };
+  },
+  created() {
+    const raw = localStorage.user;
+    if(raw) {
+      try {
+        this.user = JSON.parse(raw);
+      }
+      catch(err) {
+        localStorage.removeItem('user');
+      }
+    }
+  },
+  methods: {
+    handleLogout() {
+      localStorage.removeItem('user');
+      this.user = null;
+    }
+  }
 };
 </script>
 
