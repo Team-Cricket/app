@@ -1,19 +1,31 @@
 <template>
   <div id="app">
-    <RouterLink to="/LoginForm">Login Form</RouterLink>
+    <nav>
+      <router-link to="/">Login</router-link>
+      &nbsp;
+      <router-link to="/event">Event</router-link>
+      &nbsp;
+      <router-link to="/contact">Contact</router-link>
+      &nbsp;
+      <router-link to="/dashboard">Dashboard</router-link>
+      &nbsp;
+      <router-link to="/dashboard/events">Events List</router-link>
+      &nbsp;
+      <router-link to="/dashboard/contacts">Contacts List</router-link>
+      
+    </nav>
+    <router-view/>
+
     
 
   </div>
 </template>
 
 <script>
-import LoginForm from './components/LoginForm.vue';
+
 
 export default {
-  name: 'app',
-  components: {
-    LoginForm
-  }
+  
 };
 </script>
 
