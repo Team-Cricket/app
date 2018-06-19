@@ -1,18 +1,18 @@
 <template>
   <div>
     <img width="150px" src="https://res.cloudinary.com/hrscywv4p/image/upload/c_limit,fl_lossy,h_300,w_300,f_auto,q_auto/v1/983693/axmqlpjyo3zmeszdr9qt.png">
-    <form @click="type = isSignUp ? 'signIn' : 'signUp'">
+    <form @submit.prevent="handleSubmit">
       Email:<input v-model="credentials.email">
       <br>
       Password:<input
       :type="show ? 'text' : 'password'" 
       v-model="credentials.password">
       <br>
-      <button @click="show = !show"
+      <button type="button" @click="show = !show"
       >Show/Hide Password
       </button>
       <br>
-      <button>
+      <button type="submit">
         {{ label }}
       </button>
 
