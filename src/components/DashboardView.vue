@@ -1,5 +1,8 @@
 <template>
-  <h1>Dashboard View Component</h1>
+  <div>
+    <h1>Dashboard View Component</h1>
+    <router-view/>
+  </div>
 </template>
 
 <script>
