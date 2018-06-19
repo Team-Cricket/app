@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    
+    <RouterLink to="/LoginForm">Login Form</RouterLink>
     
 
   </div>
