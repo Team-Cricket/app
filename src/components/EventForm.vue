@@ -5,26 +5,29 @@
     <form @submit.prevent="handleSubmit">
       <label>
         Name:
+        <br>
         <input type="text" name="name" placeholder="Event Name" required
           v-model="event.name">
       </label>
 
       <label>
         Date:
-        <input type="text" name="date" placeholder="Event Date" required
+        <br>
+        <input type="date" name="date" placeholder="Event Date" required
           v-model="event.eventdate">
       </label>
 
       <label>
         Description:
-        <textarea name="body" rows="8" cols="40"  
+        <br>
+        <textarea name="body" rows="8" cols="30"  
           v-model="event.description"></textarea>
       </label> 
 
       <label>
         <button type="submit">Add Event</button>
       </label>
-
+      
       <label>
         <button type="reset">Clear</button>
       </label>
