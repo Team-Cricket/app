@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <NavBar></NavBar>
+    <NavBar
+    :user="user"
+    ></NavBar>
     <router-view/>
     
     
