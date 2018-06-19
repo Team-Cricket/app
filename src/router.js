@@ -11,7 +11,7 @@ import ContactsList from './components/ContactsList';
 export default new VueRouter({
   routes: [
     { path: '/', component: LoginForm },
-    // { path: '/', component: NavBar },
+    { path: '/', component: NavBar },
     { path: '/event', component: EventForm },
     { path: '/contact', component: ContactForm },
     { 

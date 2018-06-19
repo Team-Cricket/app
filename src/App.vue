@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <nav>
+    <NavBar></NavBar>
+    <router-view/>
+    
+    
+    <section>
       <router-link to="/">Login</router-link>
       &nbsp;
       <router-link to="/event">Event</router-link>
@@ -11,10 +15,9 @@
       &nbsp;
       <router-link to="/dashboard/events">Events List</router-link>
       &nbsp;
-      <router-link to="/dashboard/contacts">Contacts List</router-link>
-      
-    </nav>
-    <router-view/>
+      <router-link to="/dashboard/contacts">Contacts List</router-link> 
+    </section>
+   
 
     
 
@@ -22,10 +25,12 @@
 </template>
 
 <script>
-
-
+import NavBar from './components/NavBar';
 export default {
-  
+  name: 'app',
+  components: {
+    'NavBar': NavBar
+  }
 };
 </script>
 
