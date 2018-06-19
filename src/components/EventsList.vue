@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <h1>Dashboard View Component</h1>
-    <router-view/>
-  </div>
+  <h2>I am the events list</h2>
 </template>
 
 <script>
