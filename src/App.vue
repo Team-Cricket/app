@@ -1,19 +1,20 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <RouterLink to="/LoginForm">Login Form</RouterLink>
+    
+
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import LoginForm from './components/LoginForm.vue';
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    LoginForm
   }
-}
+};
 </script>
 
 <style>
