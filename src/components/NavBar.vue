@@ -1,13 +1,66 @@
 <template>
-  <h1>Nav Bar Component</h1>
+  <div>
+    <nav>
+      <router-link to="/event">New Event</router-link>
+      &nbsp;
+      <router-link to="/dashboard">Dashboard</router-link>
+      &nbsp;
+      <router-link v-if="user" @click.prevent="handleLogout" to="/">Logout</router-link>
+    </nav>
+  </div>
 </template>
 
 <script>
 export default {
-
+  data() {
+    return {
+      user: null
+    };
+  },
+  created() {
+    const raw = localStorage.user;
+    if(raw) {
+      try {
+        this.user = JSON.parse(raw);
+      }
+      catch(err) {
+        localStorage.removeItem('user');
+      }
+    }
+  },
+  methods: {
+    handleLogout() {
+      localStorage.removeItem('user');
+      this.user = null;
+    }
+  }
 };
 </script>
 
 <style>
+nav {
+ background-color: #EFEB3E;
+}
+nav a {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-size: 1.5em;
+  font-weight: bolder;
+  text-decoration: none;
+  padding: 8px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  margin-top: 60px;
+  color:#00AA8F;
+}
+nav a:hover {
+  color: #fff;
+  background-color: #00AA8F;
+}
+
+nav a:active{
+  color: #fff;
+  background-color: #00AA8F;
+}
 
 </style>
