@@ -1,28 +1,35 @@
 <template>
   <div>
-    <img width=" 200px" src="https://res.cloudinary.com/hrscywv4p/image/upload/c_limit,fl_lossy,h_300,w_300,f_auto,q_auto/v1/983693/axmqlpjyo3zmeszdr9qt.png">
-    <br>
-    <button>
-      Sign In? Sign Up?
-    </button>
-    <form>
+    <img width="150px" src="https://res.cloudinary.com/hrscywv4p/image/upload/c_limit,fl_lossy,h_300,w_300,f_auto,q_auto/v1/983693/axmqlpjyo3zmeszdr9qt.png">
+    <form @click="type = isSignUp ? 'signIn' : 'signUp'">
+      Email:<input v-model="credentials.email">
       <br>
-      <input v-model="credentials.email">
+      Password:<input
+      :type="show ? 'text' : 'password'" 
+      v-model="credentials.password">
       <br>
-      <button
-      type="button"
+      <button @click="show = !show"
       >Show/Hide Password
       </button>
       <br>
-      <button type="submit"
-      >Log In/Sign Up
+      <button>
+        {{ label }}
       </button>
-    </form>
 
+      <p v-if="isSignUp">
+        Have an account? Click <strong class="pointer" @click="type = isSignUp ? 'signIn' : 'signUp'">here</strong> to sign in!
+      </p>
+
+      <p v-else>
+        New user? Click <strong class="pointer" @click="type = isSignUp ? 'signIn' : 'signUp'">here</strong> to sign up!
+      </p>
+
+    </form>
   </div>
 </template>
 
 <script>
+import { signUp, signIn } from '../services/api';
 
 export default {
   data() {
@@ -31,7 +38,7 @@ export default {
         email: '',
         password: ''
       },
-
+      show: false,
       type: 'signUp',
     };
   },
@@ -56,7 +63,17 @@ export default {
 };
 </script>
 
-<style>
-
-
+<style scoped>
+img {
+  margin-top: 50px;
+}
+.pointer {
+cursor: pointer;
+}
+input, button {
+  margin: 10px;
+}
+button {
+  font-size: 14px;
+}
 </style>
