@@ -65,13 +65,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
-.image-form {
-  width: 300px;
-  text-align: left;
+
+.event-form {
   margin-top: 50px;
-  margin-left: 100px;
   font-size: 18px;
 }
 button {
@@ -87,6 +85,5 @@ input {
 }
 label {
   display: block;
- 
 }
 </style>
