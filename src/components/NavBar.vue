@@ -12,28 +12,7 @@
 
 <script>
 export default {
-  data() {
-    return {
-      user: null
-    };
-  },
-  created() {
-    const raw = localStorage.user;
-    if(raw) {
-      try {
-        this.user = JSON.parse(raw);
-      }
-      catch(err) {
-        localStorage.removeItem('user');
-      }
-    }
-  },
-  methods: {
-    handleLogout() {
-      localStorage.removeItem('user');
-      this.user = null;
-    }
-  }
+  
 };
 </script>
 
