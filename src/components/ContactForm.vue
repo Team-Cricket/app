@@ -9,28 +9,27 @@
         <input type="text" name="name" placeholder="Contact Name" required
           v-model="contact.name">
       </label>
-
       <label>
         Company:
-      </label>
-
           <select v-model="contact.companyId"> 
-            
             <option v-for="company in companies"
             :key="company.id"
             :value="company.id"
-            >{{ company.name }}</option>
-
-            
+            >{{ company.name }}</option> 
           </select>    
-
+      </label>
+      <label v-if="contact.companyId===0">
+        New Company:
+        <br>
+        <input type="text" placeholder="New Company"
+          v-model="newCompany">
+      </label>
       <label>
         Email:
         <br>
         <input type="email" name="email" required placeholder="Email" 
           v-model="contact.email">
       </label>
-
       <label>
         Notes:
         <br>
@@ -57,10 +56,11 @@ export default {
   data() {
     return {
       companies: [],
+      newCompany:'',
       error: null,
       contact: {
         name: '',
-        companyId: '',
+        companyId: null,
         email: '',
         other: '',
         notes: ''
@@ -72,6 +72,7 @@ export default {
     getCompanies()
     .then(resultCompanies => {
       this.companies = resultCompanies;
+      this.companies.push({name: "Add new company", id:0});
     })
     .catch(err => {
       this.error = err;
