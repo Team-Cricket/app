@@ -50,6 +50,15 @@ export function addEvent(event) {
     .then(responseHandler);
 }
 
+export function addCompany(company) {
+  return fetch(`${COMPANIES_URL}`, {
+    method: 'POST',
+    headers: getHeaders(true),
+    body: JSON.stringify(company)
+  })
+    .then(responseHandler);
+}
+
 export function signUp(credentials) {
   return fetch(`${AUTH_URL}/signup`, {
     method: 'POST',
