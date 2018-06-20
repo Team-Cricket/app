@@ -5,6 +5,8 @@
 <script>
 export default {
 
+  props: ['user', 'event']
+
 };
 </script>
 
