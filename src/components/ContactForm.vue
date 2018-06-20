@@ -11,6 +11,7 @@
       </label>
       <label>
         Company:
+        <br>
           <select v-model="contact.companyId"> 
             <option v-for="company in companies"
             :key="company.id"
@@ -52,6 +53,7 @@
 
 <script>
 import { getCompanies } from '../services/api';
+import { addCompany } from '../services/api';
 export default {
   data() {
     return {
@@ -84,6 +86,7 @@ export default {
   methods: {
     handleSubmit() {
       this.error = null;
+      
       return addContact(this.contact)
         .then(saved => {
           this.$router.push(`/contacts/${saved.id}`);

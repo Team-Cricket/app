@@ -10,6 +10,7 @@ function responseHandler(response) {
   });
 }
 
+
 function getHeaders(hasBody) {
   const headers = {};
   if(hasBody) {
@@ -46,6 +47,24 @@ export function addEvent(event) {
     method: 'POST',
     headers: getHeaders(true),
     body: JSON.stringify(event)
+  })
+    .then(responseHandler);
+}
+
+export function updateEvent(event) {
+  return fetch(`${EVENTS_URL}/${event.eventId}`, {
+    method: 'PUT',
+    headers: getHeaders(true),
+    body: JSON.stringify(event)
+  })
+    .then(response => response.json());
+}
+
+export function addCompany(company) {
+  return fetch(`${COMPANIES_URL}`, {
+    method: 'POST',
+    headers: getHeaders(true),
+    body: JSON.stringify(company)
   })
     .then(responseHandler);
 }
