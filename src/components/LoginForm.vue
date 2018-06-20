@@ -31,6 +31,8 @@
 <script>
 import { signUp, signIn } from '../services/api';
 
+const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 export default {
   data() {
     return {
@@ -40,9 +42,9 @@ export default {
       },
       show: false,
       type: 'signUp',
+      error: null
     };
   },
-
   computed: {
     isSignUp() {
       return this.type === 'signUp';
@@ -51,13 +53,21 @@ export default {
       return this.isSignUp ? 'Sign Up' : 'Sign In';
     }
   },
-
   methods: {
     handleSubmit() {
+      if(!emailRegex.test(this.credentials.email)) {
+        this.error = 'Please enter a valid email';
+        return;
+      }
+
+      this.error = null;
       const action = this.isSignUp ? signUp : signIn;
       action(this.credentials)
-        .then(result => console.log(result))
-        .catch(err => console.log(err));
+        .then(user => {
+          this.onUser(user);
+          this.$router.push('/');
+        })
+        .catch(err => this.error(err));
     }
   }
 };

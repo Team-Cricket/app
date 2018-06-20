@@ -3,8 +3,7 @@
     <NavBar
     :user="user"
     ></NavBar>
-    <router-view/>
-    
+    <router-view :on-user="handleUser" :user="user"/>
     
     <section>
       <router-link to="/">Login</router-link>
@@ -31,7 +30,7 @@ import NavBar from './components/NavBar';
 export default {
   name: 'app',
   components: {
-    'NavBar': NavBar
+    NavBar
   },
   data() {
     return {
@@ -50,6 +49,10 @@ export default {
     }
   },
   methods: {
+    handleUser(user) {
+      this.user = user;
+      localStorage.user = JSON.stringify(user);
+    },
     handleLogout() {
       localStorage.removeItem('user');
       this.user = null;
