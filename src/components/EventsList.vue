@@ -29,7 +29,7 @@ export default {
       events: null,
       error: null, 
       userId: 1  // dummy data -- will pull from params
-    }
+    };
   },
   created() {
     this.error = null;
@@ -57,7 +57,7 @@ export default {
       });
     }
   }
-}
+};
 </script>
 
 

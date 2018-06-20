@@ -18,7 +18,7 @@ function getHeaders(hasBody) {
   const user = localStorage.user;
   if(user) {
     try {
-      headers['Authorization'] = JSON.parse(user).id;
+      headers['Authorization'] = JSON.parse(user).userId;
     }
     catch(err) {
       localStorage.removeItem('user');
@@ -37,6 +37,15 @@ export function getCompanies() {
 export function getEvents(userId) {
   return fetch(`${EVENTS_URL}/${userId}`, {
     headers: getHeaders()
+  })
+    .then(responseHandler);
+}
+
+export function addEvent(event) {
+  return fetch(`${EVENTS_URL}`, {
+    method: 'POST',
+    headers: getHeaders(true),
+    body: JSON.stringify(event)
   })
     .then(responseHandler);
 }
