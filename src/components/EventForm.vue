@@ -4,17 +4,17 @@
     <h2>Add an Event</h2>
     <form @submit.prevent="handleSubmit">
       <label>
-        Name:
+        Event Name:
         <br>
         <input type="text" name="name" placeholder="Event Name" required
           v-model="event.name">
       </label>
 
       <label>
-        Date:
+        Event Date:
         <br>
         <input type="date" name="date" placeholder="Event Date" required
-          v-model="event.eventdate">
+          v-model="event.eventDate">
       </label>
 
       <label>
@@ -38,24 +38,27 @@
 </template>
 
 <script>
+import { addEvent } from '../services/api';
 
 export default {
   data() {
     return {
       error: null,
       event: {
+        userId: this.user.userId,
         name: '',
-        date: '',
+        eventDate: '',
         description: ''
       }
     };
   },
+  props: ['user'],
   methods: {
     handleSubmit() {
       this.error = null;
       return addEvent(this.event)
         .then(saved => {
-          this.$router.push(`/events/${saved.id}`);
+          this.$router.push(`/events/${saved.userId}`);
         })
         .catch(err => {
           this.error = err;
