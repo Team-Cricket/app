@@ -41,6 +41,15 @@ export function getEvents(userId) {
     .then(responseHandler);
 }
 
+export function addEvent(event) {
+  return fetch(`${EVENTS_URL}`, {
+    method: 'POST',
+    headers: getHeaders(true),
+    body: JSON.stringify(event)
+  })
+    .then(responseHandler);
+}
+
 export function signUp(credentials) {
   return fetch(`${AUTH_URL}/signup`, {
     method: 'POST',
