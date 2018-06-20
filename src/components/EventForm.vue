@@ -48,6 +48,7 @@ export default {
         userId: this.user.userId,
         name: '',
         eventDate: '',
+        eventId: 3, //Take this out for dynamic data (hard-coded 3)
         description: ''
       }
     };
@@ -56,13 +57,14 @@ export default {
   methods: {
     handleSubmit() {
       this.error = null;
-      return addEvent(this.event)
-        .then(saved => {
-          this.$router.push(`/events/${saved.userId}`);
-        })
-        .catch(err => {
-          this.error = err;
-        });
+      this.$router.push(`/contact/${this.event.eventId}`);
+      // return addEvent(this.event)
+        // .then(saved => {
+        //   this.$router.push(`/contact/${this.event.eventId}`);
+        // })
+        // .catch(err => {
+        //   this.error = err;
+        // });
     }
   }
 };

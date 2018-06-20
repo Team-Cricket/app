@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <NavBar
-    :user="user"
-    ></NavBar>
+    <section v-if="user">
+      <NavBar
+      :user="user"
+      ></NavBar>
+    </section>
     <router-view :on-user="handleUser" :user="user"/>
     
     <section>

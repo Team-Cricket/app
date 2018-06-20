@@ -28,7 +28,7 @@ export default {
     return {
       events: null,
       error: null, 
-      userId: 1  // dummy data -- will pull from params
+      userId: this.user.userId
     };
   },
   created() {
@@ -40,13 +40,14 @@ export default {
       .catch(err => {
         this.error = err;
       });
-  }, 
+  },
+  props: ['user'],
   methods: {
     openNewEvent() {
-      this.$router.push(`/event`);
+      this.$router.push('/event');
     },
     deleteEvent(event) {
-      const id=event.eventId
+      const id = event.eventId;
       // remove from server
       return deleteEvent(eventId)
         .then(() => {
@@ -54,7 +55,7 @@ export default {
           const index = this.events.findIndex(event => event.eventId === id);
           if(index === -1) return;
           this.events.splice(index, 1);
-      });
+        });
     }
   }
 };

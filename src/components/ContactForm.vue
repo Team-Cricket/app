@@ -63,21 +63,24 @@ export default {
         companyId: null,
         email: '',
         other: '',
-        notes: ''
+        notes: '',
+        userId: this.user.userId,
+        eventId: this.$route.params.id
       }
     };
   },
   created() {
     this.error = null;
     getCompanies()
-    .then(resultCompanies => {
-      this.companies = resultCompanies;
-      this.companies.push({name: "Add new company", id:0});
-    })
-    .catch(err => {
-      this.error = err;
-    });
+      .then(resultCompanies => {
+        this.companies = resultCompanies;
+        this.companies.push({ name: 'Add new company', id:0 });
+      })
+      .catch(err => {
+        this.error = err;
+      });
   },
+  props: ['user', 'event'],
   methods: {
     handleSubmit() {
       this.error = null;
