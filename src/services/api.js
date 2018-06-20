@@ -18,7 +18,7 @@ function getHeaders(hasBody) {
   const user = localStorage.user;
   if(user) {
     try {
-      headers['Authorization'] = JSON.parse(user).id;
+      headers['Authorization'] = JSON.parse(user).userId;
     }
     catch(err) {
       localStorage.removeItem('user');
