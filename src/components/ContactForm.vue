@@ -12,13 +12,16 @@
 
       <label>
         Company:
-        </label>
-          <select v-model="selected">
-            <option disabled value="">Please select one</option>
-            <option>Alchemy</option>
-            <option>Ebay</option>
-            <option>Adidas</option>
-            <option>Google</option>
+      </label>
+
+          <select v-model="contact.companyId"> 
+            
+            <option v-for="company in companies"
+            :key="company.id"
+            :value="company.id"
+            >{{ company.name }}</option>
+
+            
           </select>    
 
       <label>
@@ -49,20 +52,30 @@
 </template>
 
 <script>
-
+import { getCompanies } from '../services/api';
 export default {
   data() {
-    selected: []
     return {
+      companies: [],
       error: null,
       contact: {
         name: '',
-        company: '',
+        companyId: '',
         email: '',
         other: '',
         notes: ''
       }
     };
+  },
+  created() {
+    this.error = null;
+    getCompanies()
+    .then(resultCompanies => {
+      this.companies = resultCompanies;
+    })
+    .catch(err => {
+      this.error = err;
+    });
   },
   methods: {
     handleSubmit() {
@@ -74,7 +87,7 @@ export default {
         .catch(err => {
           this.error = err;
         });
-    }
+    }   
   }
 };
 </script>
