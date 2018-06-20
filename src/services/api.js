@@ -1,5 +1,6 @@
 const URL = 'http://localhost:3000/api';
 const EVENTS_URL = `${URL}/events`;
+const CONTACTS_URL = `${URL}/contacts`;
 const AUTH_URL = `${URL}/auth`;
 const COMPANIES_URL = `${URL}/companies`;
 
@@ -9,7 +10,6 @@ function responseHandler(response) {
     throw err.message; 
   });
 }
-
 
 function getHeaders(hasBody) {
   const headers = {};
@@ -28,12 +28,7 @@ function getHeaders(hasBody) {
   return headers;
 }
 
-export function getCompanies() {
-  return fetch(COMPANIES_URL, {
-    headers: getHeaders()
-  })
-    .then(responseHandler);
-}
+/////////////// EVENTS ///////////////////
 
 export function getEvents(userId) {
   return fetch(`${EVENTS_URL}/${userId}`, {
@@ -60,6 +55,58 @@ export function updateEvent(event) {
     .then(response => response.json());
 }
 
+export function deleteEvent(eventId) {
+  return fetch(`${EVENTS_URL}/${eventId}`, {
+    method: 'DELETE',
+    headers: getHeaders()
+  })
+    .then(responseHandler);
+}
+
+/////////////// CONTACTS /////////////////
+
+export function getContacts(userId) {
+  return fetch(`${CONTACTS_URL}/${userId}`, {
+    headers: getHeaders()
+  })
+    .then(responseHandler);
+}
+
+export function addContact(contact) {
+  return fetch(`${CONTACTS_URL}`, {
+    method: 'POST',
+    headers: getHeaders(true),
+    body: JSON.stringify(contact)
+  })
+    .then(responseHandler);
+}
+
+export function updateContact(contact) {
+  return fetch(`${CONTACTS_URL}/${contact.contactId}`, {
+    method: 'PUT',
+    headers: getHeaders(true),
+    body: JSON.stringify(contact)
+  })
+    .then(response => response.json());
+}
+
+export function deleteContact(contactId) {
+  return fetch(`${CONTACTS_URL}/${contactId}`, {
+    method: 'DELETE',
+    headers: getHeaders()
+  })
+    .then(responseHandler);
+}
+
+//////////////// COMPANIES ////////////////
+
+export function getCompanies() {
+  return fetch(COMPANIES_URL, {
+    headers: getHeaders()
+  })
+    .then(responseHandler);
+}
+
 export function addCompany(company) {
   return fetch(`${COMPANIES_URL}`, {
     method: 'POST',
@@ -68,6 +115,8 @@ export function addCompany(company) {
   })
     .then(responseHandler);
 }
+
+/////////// SIGN UP AND IN ////////////////
 
 export function signUp(credentials) {
   return fetch(`${AUTH_URL}/signup`, {
@@ -83,14 +132,6 @@ export function signIn(credentials) {
     method: 'POST',
     headers: getHeaders(true),
     body: JSON.stringify(credentials)
-  })
-    .then(responseHandler);
-}
-
-export function deleteEvent(eventId) {
-  return fetch(`${EVENTS_URL}/${eventId}`, {
-    method: 'DELETE',
-    headers: getHeaders()
   })
     .then(responseHandler);
 }
