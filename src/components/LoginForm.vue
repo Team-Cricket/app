@@ -1,6 +1,9 @@
 <template>
   <div>
     <img width="150px" src="https://res.cloudinary.com/hrscywv4p/image/upload/c_limit,fl_lossy,h_300,w_300,f_auto,q_auto/v1/983693/axmqlpjyo3zmeszdr9qt.png">
+    <p id="login-error" v-if="error">
+      {{ error }}
+    <p v-else>
     <form @submit.prevent="handleSubmit">
       Email:<input v-model="credentials.email">
       <br>
@@ -31,6 +34,8 @@
 <script>
 import { signUp, signIn } from '../services/api';
 
+const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 export default {
   data() {
     return {
@@ -39,10 +44,10 @@ export default {
         password: ''
       },
       show: false,
-      type: 'signUp',
+      type: 'signIn',
+      error: null
     };
   },
-
   computed: {
     isSignUp() {
       return this.type === 'signUp';
@@ -51,19 +56,30 @@ export default {
       return this.isSignUp ? 'Sign Up' : 'Sign In';
     }
   },
-
   methods: {
     handleSubmit() {
+      if(!emailRegex.test(this.credentials.email)) {
+        this.error = 'Please enter a valid email address';
+        return;
+      }
+
+      this.error = null;
       const action = this.isSignUp ? signUp : signIn;
       action(this.credentials)
-        .then(result => console.log(result))
-        .catch(err => console.log(err));
+        .then(user => {
+          this.onUser(user);
+          this.$router.push('/');
+        })
+        .catch(err => this.error = err);
     }
   }
 };
 </script>
 
 <style scoped>
+#login-error {
+  color: red;
+}
 img {
   margin-top: 50px;
 }
