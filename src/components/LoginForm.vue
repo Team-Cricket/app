@@ -3,6 +3,7 @@
     <img width="150px" src="https://res.cloudinary.com/hrscywv4p/image/upload/c_limit,fl_lossy,h_300,w_300,f_auto,q_auto/v1/983693/axmqlpjyo3zmeszdr9qt.png">
     <p id="login-error" v-if="error">
       {{ error }}
+    </p>
     <p v-else>
     <form @submit.prevent="handleSubmit">
       Email:<input v-model="credentials.email">
@@ -28,6 +29,7 @@
       </p>
 
     </form>
+    </p>
   </div>
 </template>
 
@@ -48,6 +50,7 @@ export default {
       error: null
     };
   },
+  props: ['onUser'],
   computed: {
     isSignUp() {
       return this.type === 'signUp';
