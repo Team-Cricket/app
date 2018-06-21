@@ -19,11 +19,11 @@ export default {
 
 <style>
 #navBar {
-  position: fixed;
+  position: relative;
   top: 0;
   right: 0;
   width: 100%;
-  margin-top: 4%;
+  margin-top: 0px;
 }
 
 #navlogo {

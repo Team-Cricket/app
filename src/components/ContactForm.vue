@@ -2,8 +2,8 @@
 
     
   <div class="contact-form">
-    <h1 class="comp-title">Add Contact</h1>
-     <p class="sub">Fill in some details about the person you just met so you can follow up:</p>
+    <h1 class="comp-title">Contact</h1>
+     <p class="sub">Fill in some details about the person you connected with:</p>
 
 
     <pre>{{ error }}</pre>
@@ -186,7 +186,7 @@ export default {
 
 <style scoped>
 .contact-form {
-  margin-top: 25%;
+  margin-top: 10%;
   text-align: center;
 }
 
@@ -252,7 +252,9 @@ input {
 select {
   margin-bottom: 10px;
   width: 180px;
-  height: 20px;
+  height: 24px;
+  border-radius: 0px;
+  background-color: #fff;
 }
 
 label {
