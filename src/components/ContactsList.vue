@@ -6,11 +6,10 @@
         <li
           v-for="contact in contacts"
           :key="contact.contactId"
-        >
-          <!-- <router-link :to="`/events/${user.userId}`"> -->
-          <router-link :to="`/contacts`"> 
-            <strong>{{ contact.name }}</strong><br>
-          </router-link>
+          >
+          <strong>{{ contact.name }}</strong>
+          <br>
+          {{ contact.email }}
         </li>
       </ul>
     </div>
@@ -20,21 +19,43 @@
 <script>
 import { getContacts } from '../services/api';
 export default {
+  data() {
+    return {
+      contacts: null,
+      error: null,
+      userId: this.user.userId
+    };
+  },
   created() {
     this.error = null;
     getContacts(this.userId)
       .then(resultEvents => {
-        this.events = resultEvents;
+        this.contacts = resultEvents;
       })
       .catch(err => {
         this.error = err;
       });
   },
-  props: ['user', 'event']
+  props: ['user']
 
 };
 </script>
 
-<style>
+<style scoped>
+#contacts {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+div {
+  text-align: left;
+}
 
+ul {
+  list-style-type: none;
+}
+li {
+  max-width: 375px;
+  margin: 10px;
+}
 </style>
