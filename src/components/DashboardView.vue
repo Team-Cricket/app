@@ -2,8 +2,10 @@
   <div>
     <div id="dashboard-content">
       <router-link class="router-link" to="/dashboard/events">Events</router-link>
+
       &nbsp;
       <router-link class="router-link" to="/dashboard/contacts">Contacts</router-link>
+      
     </div>
     <router-view :user="user" :event="event"/>
   </div>
@@ -35,8 +37,5 @@ export default {
   font-weight: 700;
   vertical-align: middle;
   line-height: 60px;
-
 } 
-
-
 </style>

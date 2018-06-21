@@ -32,7 +32,7 @@
         </button>
 
         <p v-if="isSignUp">
-          Have an account? Click <strong @click="type = isSignUp ? 'signIn' : 'signUp'">here</strong> to sign in!
+          Have an account? Click <strong @click="type = isSignUp ? 'signIn' : 'signUp'">here</strong> to login!
         </p>
 
         <p v-else>
@@ -100,12 +100,17 @@ export default {
 
 #login-content {
   text-align: center;
+  margin-top: 40px;
 }
 
 h1 {
   margin: 2px;
   padding: 2px;
   text-align: center;
+}
+
+strong {
+  color: #FF7546;
 }
 
 label {
@@ -116,6 +121,8 @@ label {
 
 input {
   margin-bottom: 20px;
+  width: 180px;
+  height: 20px;
 
 }
 
@@ -145,8 +152,9 @@ input {
   letter-spacing: .2em;
   background-color: #FF7546;
   color: #fff;
-  padding: 10px 60px;
+  padding: 10px 10px;
   border: none;
+  width: 180px;
 }
 
 #inout:active {
