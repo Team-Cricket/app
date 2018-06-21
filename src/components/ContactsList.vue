@@ -11,7 +11,6 @@
           <router-link :to="`/contacts`"> 
             <strong>{{ contact.name }}</strong><br>
           </router-link>
-          {{ event.description }}<br>&nbsp;
         </li>
       </ul>
     </div>
@@ -19,8 +18,18 @@
 </template>
 
 <script>
+import { getContacts } from '../services/api';
 export default {
-
+  created() {
+    this.error = null;
+    getContacts(this.userId)
+      .then(resultEvents => {
+        this.events = resultEvents;
+      })
+      .catch(err => {
+        this.error = err;
+      });
+  },
   props: ['user', 'event']
 
 };
