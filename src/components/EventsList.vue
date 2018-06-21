@@ -9,8 +9,9 @@
         >
           <!-- <router-link :to="`/events/${user.userId}`"> -->
             <img class="delete-logo" @click="handleDelete(event)" width="15px" src="../assets/delete-icon.png">
-          <router-link :to="`/events`"> 
+          <router-link :to="`/event/${event.eventId}`"> 
             <h3>{{ event.name }}</h3> 
+            <h3>{{ event.eventDate.substring(0, 10) }}</h3> 
             <h4>{{ event.count }} contacts</h4>
             <br>
           </router-link>
