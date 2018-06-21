@@ -42,12 +42,12 @@ export default {
     handleDelete(contact) {
       const confirmDelete = confirm('Are you sure you want to delete this contact?');
       if(confirmDelete === true) {
-        const id = contact.id;
+        const id = contact.contactId;
         // remove from server
-        return deleteContact(contact.id)
+        return deleteContact(contact.contactId)
           .then(() => {
             // remove from current list of contacts
-            const index = this.contacts.findIndex(contact => contact.id === id);
+            const index = this.contacts.findIndex(contact => contact.contactId === id);
             if(index === -1) return;
             this.contacts.splice(index, 1);
           });

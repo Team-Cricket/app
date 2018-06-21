@@ -9,7 +9,7 @@
         >
           <!-- <router-link :to="`/events/${user.userId}`"> -->
             <img class="delete-logo" @click="handleDelete(event)" width="15px" src="../assets/delete-icon.png">
-            <strong>{{ event.name }}</strong> ({{ event.count }} contacts)
+            <strong>{{ event.name }}</strong> {{ event.eventDate }} ({{ event.count }} contacts)
             <br>
           {{ event.description }}<br>&nbsp;
         </li>
@@ -44,12 +44,12 @@ export default {
     handleDelete(event) {
       const confirmDelete = confirm('Are you sure you want to delete this event and all associated contacts?');
       if(confirmDelete === true) {
-        const id = event.id;
+        const id = event.eventId;
         // remove from server
-        return deleteEvent(event.id)
+        return deleteEvent(event.eventId)
           .then(() => {
             // remove from current list of events
-            const index = this.events.findIndex(event => event.id === id);
+            const index = this.events.findIndex(event => event.eventId === id);
             if(index === -1) return;
             this.events.splice(index, 1);
           });
