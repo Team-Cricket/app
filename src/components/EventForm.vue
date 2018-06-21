@@ -29,7 +29,7 @@
       </label>
       
       <label>
-        <button type="reset">Clear</button>
+        <button v-on:click="clearForm" type="button">Clear</button>
       </label>
 
     </form>
@@ -55,16 +55,21 @@ export default {
   },
   props: ['user'],
   methods: {
+    clearForm() {
+        this.event.name = '';
+        this.event.eventDate = '';
+        this.event.description = '';
+    },
+
     handleSubmit() {
       this.error = null;
-      this.$router.push(`/contact/${this.event.eventId}`);
-      // return addEvent(this.event)
-        // .then(saved => {
-        //   this.$router.push(`/contact/${this.event.eventId}`);
-        // })
-        // .catch(err => {
-        //   this.error = err;
-        // });
+      return addEvent(this.event)
+        .then(saved => {
+          this.$router.push(`/contact/${saved.eventId}`);
+        })
+        .catch(err => {
+          this.error = err;
+        });
     }
   }
 };
