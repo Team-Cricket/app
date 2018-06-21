@@ -10,8 +10,9 @@
     </section>
 
     <router-view :on-user="handleUser" :user="user"/>
-
+    
   </div>
+  
 </template>
 
 <script>
@@ -92,6 +93,14 @@ a:active {
 }
 
 input {
+  border: solid 1px #999;
+}
+
+textarea {
+  border: solid 1px #999;
+}
+
+select {
   border: solid 1px #999;
 }
 

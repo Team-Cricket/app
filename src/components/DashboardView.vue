@@ -2,7 +2,7 @@
   <div>
     <div id="dashboard-content">
       <router-link class="router-link" to="/dashboard/events">Events</router-link>
-      <router-link class="router-link" to="/dashboard/contacts">Contacts</router-link>
+      <router-link class="router-link" to="/dashboard/contacts">Contacts</router-link>  
     </div>
     <router-view :user="user" :event="event"/>
   </div>
@@ -22,6 +22,6 @@ export default {
   justify-content: center;
 }
 .router-link {
-  margin-top: 10%;
+  margin-top: 25%;
 }
 </style>
