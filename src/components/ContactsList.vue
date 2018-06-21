@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { getContacts } from '../services/api';
+import { getContactsForUser } from '../services/api';
 export default {
   data() {
     return {
@@ -28,7 +28,7 @@ export default {
   },
   created() {
     this.error = null;
-    getContacts(this.userId)
+    getContactsForUser(this.userId)
       .then(resultEvents => {
         this.contacts = resultEvents;
       })
