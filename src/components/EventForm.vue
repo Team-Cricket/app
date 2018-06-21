@@ -1,8 +1,7 @@
 <template id="event-template">
   <section class="event-form">
-    <h1>Event Form Component</h1>
-    <h2>Add an Event</h2>
-    <form @submit.prevent="handleSubmit">
+    <h2>Event</h2>
+    <form @submit.prevent>
       <label>
         Event Name:
         <br>
@@ -25,7 +24,8 @@
       </label> 
 
       <label>
-        <button type="submit">Add Event</button>
+        <button v-if="!event.eventId" type="submit" @click="handleAdd">Add Event</button>
+        <button v-else type="submit" @click="handleUpdate">Update Event</button>
       </label>
       
       <label>
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { addEvent } from '../services/api';
+import { addEvent, getEvent, updateEvent } from '../services/api';
 
 export default {
   data() {
@@ -53,6 +53,19 @@ export default {
       }
     };
   },
+    
+  created() {
+    const id = this.$route.params.eventId;
+    if(id) {
+      return getEvent(id)
+        .then(result => {
+          this.event.name = result.name;
+          this.event.eventDate = result.eventDate.substring(0, 10);
+          this.event.eventId = result.eventId;
+          this.event.description = result.description;
+        });
+    }
+  },
   props: ['user'],
   methods: {
     clearForm() {
@@ -60,12 +73,21 @@ export default {
       this.event.eventDate = '';
       this.event.description = '';
     },
-
-    handleSubmit() {
+    handleAdd() {
       this.error = null;
       return addEvent(this.event)
         .then(saved => {
           this.$router.push(`/contact/${saved.eventId}`);
+        })
+        .catch(err => {
+          this.error = err;
+        });
+    },
+    handleUpdate() {
+      this.error = null;
+      return updateEvent(this.event)
+        .then(() => {
+          this.$router.push('/dashboard');
         })
         .catch(err => {
           this.error = err;
