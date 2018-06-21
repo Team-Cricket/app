@@ -3,6 +3,7 @@
     <section v-if="user">
       <NavBar
       :user="user"
+      :logout="handleLogout"
       ></NavBar>
     </section>
     <router-view :on-user="handleUser" :user="user"/>

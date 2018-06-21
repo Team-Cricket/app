@@ -5,14 +5,14 @@
       &nbsp;
       <router-link to="/dashboard">Dashboard</router-link>
       &nbsp;
-      <router-link v-if="user" @click.prevent="handleLogout" to="/">Logout</router-link>
+      <router-link v-if="user" to="/"><span @click="logout">Logout</span></router-link>
     </nav>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['user']
+  props: ['user', 'logout']
 };
 </script>
 

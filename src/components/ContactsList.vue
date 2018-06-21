@@ -1,15 +1,61 @@
 <template>
-  <h2>I am the contacts list</h2>
+  <div>
+    <div id="contacts">
+      <pre v-if="error">{{ error }}</pre>
+      <ul v-if="contacts !== null">
+        <li
+          v-for="contact in contacts"
+          :key="contact.contactId"
+          >
+          <strong>{{ contact.name }}</strong>
+          <br>
+          {{ contact.email }}
+        </li>
+      </ul>
+    </div>
+  </div>
 </template>
 
 <script>
+import { getContacts } from '../services/api';
 export default {
-
-  props: ['user', 'event']
+  data() {
+    return {
+      contacts: null,
+      error: null,
+      userId: this.user.userId
+    };
+  },
+  created() {
+    this.error = null;
+    getContacts(this.userId)
+      .then(resultEvents => {
+        this.contacts = resultEvents;
+      })
+      .catch(err => {
+        this.error = err;
+      });
+  },
+  props: ['user']
 
 };
 </script>
 
-<style>
+<style scoped>
+#contacts {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+div {
+  text-align: left;
+}
 
+ul {
+  list-style-type: none;
+}
+li {
+  max-width: 375px;
+  margin: 10px;
+}
 </style>
