@@ -52,8 +52,8 @@
 </template>
 
 <script>
-import { getCompanies } from '../services/api';
-import { addCompany } from '../services/api';
+import { getCompanies, addCompany, addContact } from '../services/api';
+
 export default {
   data() {
     return {
@@ -86,14 +86,22 @@ export default {
   methods: {
     handleSubmit() {
       this.error = null;
-      
+      if(this.contact.companyId === 0) {
+        return addCompany({ 'name': this.newCompany })
+          .then(resultCompany => {
+            this.contact.companyId === resultCompany.id;
+          });
+      }
       return addContact(this.contact)
+
         .then(saved => {
+          // console.log('tada');
           this.$router.push(`/contacts/${saved.id}`);
         })
         .catch(err => {
           this.error = err;
         });
+     
     }   
   }
 };

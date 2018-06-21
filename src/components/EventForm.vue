@@ -48,7 +48,7 @@ export default {
         userId: this.user.userId,
         name: '',
         eventDate: '',
-        eventId: 3, //Take this out for dynamic data (hard-coded 3)
+        eventId: null,
         description: ''
       }
     };
