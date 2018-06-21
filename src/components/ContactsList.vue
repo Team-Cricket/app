@@ -7,6 +7,7 @@
           v-for="contact in contacts"
           :key="contact.contactId"
           >
+          <img class="delete-logo" @click="handleDelete(contact)" width="15px" src="../assets/delete-icon.png">
           <strong>{{ contact.name }}</strong>
           <br>
           {{ contact.email }}
@@ -17,7 +18,7 @@
 </template>
 
 <script>
-import { getContactsForUser } from '../services/api';
+import { getContactsForUser, deleteContact } from '../services/api';
 export default {
   data() {
     return {
@@ -36,7 +37,23 @@ export default {
         this.error = err;
       });
   },
-  props: ['user']
+  props: ['user'],
+  methods: {
+    handleDelete(contact) {
+      const confirmDelete = confirm('Are you sure you want to delete this contact?');
+      if(confirmDelete === true) {
+        const id = contact.contactId;
+        // remove from server
+        return deleteContact(contact.contactId)
+          .then(() => {
+            // remove from current list of contacts
+            const index = this.contacts.findIndex(contact => contact.contactId === id);
+            if(index === -1) return;
+            this.contacts.splice(index, 1);
+          });
+      }
+    }
+  }
 
 };
 </script>
@@ -57,5 +74,9 @@ ul {
 li {
   max-width: 375px;
   margin: 10px;
+}
+.delete-logo {
+  margin-right: 5px;
+  cursor: pointer;
 }
 </style>

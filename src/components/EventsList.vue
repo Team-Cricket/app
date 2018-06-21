@@ -8,6 +8,7 @@
           :key="event.eventId"
         >
           <!-- <router-link :to="`/events/${user.userId}`"> -->
+            <img class="delete-logo" @click="handleDelete(event)" width="15px" src="../assets/delete-icon.png">
           <router-link :to="`/events`"> 
             <h3>{{ event.name }}</h3> 
             <h4>{{ event.count }} contacts</h4>
@@ -29,7 +30,7 @@ export default {
     return {
       events: null,
       error: null, 
-      userId: this.user.userId
+      userId: this.user.userId,
     };
   },
   created() {
@@ -44,16 +45,19 @@ export default {
   },
   props: ['user'],
   methods: {
-    deleteEvent(event) {
-      const id = event.eventId;
-      // remove from server
-      return deleteEvent(this.eventId)
-        .then(() => {
-          // remove from current list of events
-          const index = this.events.findIndex(event => event.eventId === id);
-          if(index === -1) return;
-          this.events.splice(index, 1);
-        });
+    handleDelete(event) {
+      const confirmDelete = confirm('Are you sure you want to delete this event and all associated contacts?');
+      if(confirmDelete === true) {
+        const id = event.eventId;
+        // remove from server
+        return deleteEvent(event.eventId)
+          .then(() => {
+            // remove from current list of events
+            const index = this.events.findIndex(event => event.eventId === id);
+            if(index === -1) return;
+            this.events.splice(index, 1);
+          });
+      }
     }
   }
 };
@@ -116,6 +120,10 @@ ul {
 
 li {
   max-width: 375px;
+}
+.delete-logo {
+  margin-right: 5px;
+  cursor: pointer;
 }
 
 
