@@ -8,11 +8,9 @@
           :key="event.eventId"
         >
           <!-- <router-link :to="`/events/${user.userId}`"> -->
-          <router-link :to="`/events`"> 
             <img class="delete-logo" @click="handleDelete(event)" width="15px" src="../assets/delete-icon.png">
             <strong>{{ event.name }}</strong> ({{ event.count }} contacts)
             <br>
-          </router-link>
           {{ event.description }}<br>&nbsp;
         </li>
       </ul>
@@ -47,7 +45,6 @@ export default {
       const confirmDelete = confirm('Are you sure you want to delete this event and all associated contacts?');
       if(confirmDelete === true) {
         const id = event.id;
-        console.log('Clicked confirm', event.id);
         // remove from server
         return deleteEvent(event.id)
           .then(() => {
@@ -55,11 +52,7 @@ export default {
             const index = this.events.findIndex(event => event.id === id);
             if(index === -1) return;
             this.events.splice(index, 1);
-            this.$router.push('/dashboard/events');
           });
-      } else {
-        console.log('Clicked canel');
-        this.$router.push('/dashboard/events');
       }
     }
   }
@@ -85,6 +78,7 @@ li {
 }
 .delete-logo {
   margin-right: 5px;
+  cursor: pointer;
 }
 
 
