@@ -22,6 +22,6 @@ export default {
   justify-content: center;
 }
 .router-link {
-  margin: 10px;
+  margin-top: 10%;
 }
 </style>
