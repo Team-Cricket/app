@@ -1,34 +1,47 @@
 <template>
   <div>
-    <img width="150px" src="https://res.cloudinary.com/hrscywv4p/image/upload/c_limit,fl_lossy,h_300,w_300,f_auto,q_auto/v1/983693/axmqlpjyo3zmeszdr9qt.png">
-    <p id="login-error" v-if="error">
-      {{ error }}
-    </p>
-    <p v-else>
-    <form @submit.prevent="handleSubmit">
-      Email:<input v-model="credentials.email">
-      <br>
-      Password:<input
-      :type="show ? 'text' : 'password'" 
-      v-model="credentials.password">
-      <br>
-      <button type="button" @click="show = !show"
-      >Show/Hide Password
-      </button>
-      <br>
-      <button type="submit">
-        {{ label }}
-      </button>
 
-      <p v-if="isSignUp">
-        Have an account? Click <strong class="pointer" @click="type = isSignUp ? 'signIn' : 'signUp'">here</strong> to sign in!
+    <section id="header">
+      <img class="key" src="../assets/alchemy-connect-logo.png">
+    </section>
+
+    <h1>ALCHEMY CONNECT</h1>
+    <p class="sub">Make the most of your networking efforts</p>
+
+    <span id="login-content" v-if="!user">
+      <p id="login-error" v-if="error">
+        {{ error }}
       </p>
-
       <p v-else>
-        New user? Click <strong class="pointer" @click="type = isSignUp ? 'signIn' : 'signUp'">here</strong> to sign up!
-      </p>
 
-    </form>
+      <form @submit.prevent="handleSubmit">
+        <label>Email:</label>
+        <input v-model="credentials.email">
+        <br>
+        <label>Password:</label>
+        <input
+        :type="show ? 'text' : 'password'" 
+        v-model="credentials.password">
+        <br>
+        <button id="showhide" type="button" @click="show = !show"
+        >Show/Hide Password
+        </button>
+        <br>
+        <button type="submit">
+          {{ label }}
+        </button>
+
+        <p v-if="isSignUp">
+          Have an account? Click <strong @click="type = isSignUp ? 'signIn' : 'signUp'">here</strong> to sign in!
+        </p>
+
+        <p v-else>
+          New user? Click <strong  @click="type = isSignUp ? 'signIn' : 'signUp'">here</strong> to sign up!
+        </p>
+      </form>
+    </span>
+    <img class="stripe" src="../assets/codestripe.png">
+
   </div>
 </template>
 
@@ -46,10 +59,10 @@ export default {
       },
       show: false,
       type: 'signIn',
-      error: null
+      error: null,
     };
   },
-  props: ['onUser'],
+  props: ['onUser', 'user'],
   computed: {
     isSignUp() {
       return this.type === 'signUp';
@@ -79,18 +92,54 @@ export default {
 </script>
 
 <style scoped>
+
+#header {
+  background-color: #000;
+}
+
+h1 {
+  margin: 2px;
+  padding: 2px;
+}
+
+label {
+   font-family: 'Poppins', sans-serif;
+   font-weight: 700;
+ }
+
+.sub {
+  font-family: 'Source Serif Pro', serif;
+  font-weight: 400;
+  color: #00AA8F;
+  font-style: oblique;
+  margin: 0;
+}
+
+#showhide {
+  font-family: 'Poppins', sans-serif;
+  color: #999;
+  font-size: .8em;
+}
+
 #login-error {
-  color: red;
+  font-family: 'Poppins', sans-serif;
+  color: #FF7546;
 }
-img {
-  margin-top: 50px;
+
+.key {
+  margin-top: 10px;
+  width: 50%;
 }
-.pointer {
-cursor: pointer;
+
+
+.stripe {
+  width: 100%;
 }
+
 input, button {
   margin: 10px;
 }
+
 button {
   font-size: 14px;
 }

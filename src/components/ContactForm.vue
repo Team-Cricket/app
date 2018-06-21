@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import { getCompanies, addCompany, addContact} from '../services/api';
+import { getCompanies, addCompany, addContact } from '../services/api';
 
 export default {
   data() {
@@ -113,6 +113,7 @@ export default {
         });
       }
       return addContact(this.contact)
+
         .then(saved => {
           alert (saved.name + ' added as contact.');
           this.clearForm();

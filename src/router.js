@@ -16,6 +16,7 @@ export default new VueRouter({
       path: '/dashboard', 
       component: DashboardView,
       children: [
+        { path: '/', component: EventsList },
         { path: 'events', component: EventsList },
         { path: 'contacts', component: ContactsList },
       ]

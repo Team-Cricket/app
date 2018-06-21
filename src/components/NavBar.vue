@@ -1,45 +1,50 @@
 <template>
   <div>
     <nav>
-      <router-link to="/event">New Event</router-link>
+      <img id="navlogo" src="../assets/alchemy-connect-logo-bk.png">
+      <router-link to="/event">NEW EVENT</router-link>
       &nbsp;
-      <router-link to="/dashboard">Dashboard</router-link>
+      <router-link to="/dashboard">DASHBOARD</router-link>
       &nbsp;
-      <router-link v-if="user" @click.prevent="handleLogout" to="/">Logout</router-link>
+      <router-link v-if="user" to="/"><span @click="logout">LOGOUT</span></router-link>
     </nav>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['user']
+  props: ['user', 'logout']
 };
 </script>
 
 <style>
+#navlogo {
+  max-width: 18%;
+  margin-top: -18px;
+  margin-right: 0px;
+  padding: 0px;
+  float: left;
+}
 nav {
- background-color: #EFEB3E;
+ background-color: #333;
+ display: inline;
+ padding: 20px;
+ box-shadow: 0px 0px 5px 4px #ccc;
 }
 nav a {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  font-size: 1.5em;
-  font-weight: bolder;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
   text-decoration: none;
-  padding: 8px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0px;
   text-align: center;
-  margin-top: 60px;
-  color:#00AA8F;
+  margin-top: 0px;
+  color:#fff;
 }
-nav a:hover {
-  color: #fff;
-  background-color: #00AA8F;
+nav a:active {
+  color: #333;
+  background-color: #EFEB3E;
 }
 
-nav a:active{
-  color: #fff;
-  background-color: #00AA8F;
-}
+
 
 </style>

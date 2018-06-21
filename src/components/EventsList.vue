@@ -1,34 +1,36 @@
 <template>
-  <div id="events">
-    <h2>Events List</h2>
-    <button v-on:click="openNewEvent">add event</button>
-    <pre v-if="error">{{ error }}</pre>
-    <ul v-if="events !== null">
-      <li
-        v-for="event in events"
-        :key="event.eventId"
-      >
-        <!-- <router-link :to="`/events/${user.userId}`"> -->
-        <router-link :to="`/events`"> 
-          <strong>{{ event.name }}</strong> ({{ event.count }} contacts)<br>
-        </router-link>
-        {{ event.description }}<br>&nbsp;
-      </li>
-    </ul>
+  <div>
+    <div id="events">
+      <pre v-if="error">{{ error }}</pre>
+      <ul v-if="events !== null">
+        <li
+          v-for="event in events"
+          :key="event.eventId"
+        >
+          <!-- <router-link :to="`/events/${user.userId}`"> -->
+            <img class="delete-logo" @click="handleDelete(event)" width="15px" src="../assets/delete-icon.png">
+          <router-link :to="`/events`"> 
+            <h3>{{ event.name }}</h3> 
+            <h4>{{ event.count }} contacts</h4>
+            <br>
+          </router-link>
+          <p>{{ event.description }}</p>
+          <hr>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
-.push({name: "Add new company", id=0})
-
 <script>
-import { getEvents } from '../services/api';
+import { getEvents, deleteEvent } from '../services/api';
 
 export default {
   data() {
     return {
       events: null,
       error: null, 
-      userId: this.user.userId
+      userId: this.user.userId,
     };
   },
   created() {
@@ -43,19 +45,19 @@ export default {
   },
   props: ['user'],
   methods: {
-    openNewEvent() {
-      this.$router.push('/event');
-    },
-    deleteEvent(event) {
-      const id = event.eventId;
-      // remove from server
-      return deleteEvent(eventId)
-        .then(() => {
-          // remove from current list of events
-          const index = this.events.findIndex(event => event.eventId === id);
-          if(index === -1) return;
-          this.events.splice(index, 1);
-        });
+    handleDelete(event) {
+      const confirmDelete = confirm('Are you sure you want to delete this event and all associated contacts?');
+      if(confirmDelete === true) {
+        const id = event.eventId;
+        // remove from server
+        return deleteEvent(event.eventId)
+          .then(() => {
+            // remove from current list of events
+            const index = this.events.findIndex(event => event.eventId === id);
+            if(index === -1) return;
+            this.events.splice(index, 1);
+          });
+      }
     }
   }
 };
@@ -63,6 +65,50 @@ export default {
 
 
 <style scoped>
+body {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+h2 {
+  font-family: 'Source Serif Pro', serif;
+  font-weight: 400;
+  color:#00AA8F;
+}
+
+h3 {
+  font-family: 'Source Serif Pro', serif;
+  font-weight: 700;
+  color:#00AA8F;
+}
+
+h4 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color:#00AA8F;
+}
+
+p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  max-width: 80%; 
+}
+
+a {
+  text-decoration: none;
+}
+
+#events {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
 
 div {
   text-align: left;
@@ -70,6 +116,14 @@ div {
 
 ul {
   list-style-type: none;
+}
+
+li {
+  max-width: 375px;
+}
+.delete-logo {
+  margin-right: 5px;
+  cursor: pointer;
 }
 
 

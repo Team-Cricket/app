@@ -48,7 +48,7 @@ export default {
         userId: this.user.userId,
         name: '',
         eventDate: '',
-        eventId: '',
+        eventId: null,
         description: ''
       }
     };
