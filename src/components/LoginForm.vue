@@ -8,26 +8,26 @@
     <h1>ALCHEMY CONNECT</h1>
     <p class="sub">Make the most of your networking efforts</p>
 
-    <span id="login-content" v-if="!user">
+    <section id="login-content" v-if="!user">
       <p id="login-error" v-if="error">
         {{ error }}
       </p>
       <p v-else>
-
+      
       <form @submit.prevent="handleSubmit">
         <label>Email:</label>
         <input v-model="credentials.email">
-        <br>
+        
         <label>Password:</label>
         <input
         :type="show ? 'text' : 'password'" 
         v-model="credentials.password">
         <br>
         <button id="showhide" type="button" @click="show = !show"
-        >Show/Hide Password
+        >show/hide password
         </button>
         <br>
-        <button type="submit">
+        <button id="inout" type="submit">
           {{ label }}
         </button>
 
@@ -39,7 +39,7 @@
           New user? Click <strong  @click="type = isSignUp ? 'signIn' : 'signUp'">here</strong> to sign up!
         </p>
       </form>
-    </span>
+    </section>
     <img class="stripe" src="../assets/codestripe.png">
 
   </div>
@@ -68,7 +68,7 @@ export default {
       return this.type === 'signUp';
     },
     label() {
-      return this.isSignUp ? 'Sign Up' : 'Sign In';
+      return this.isSignUp ? 'SIGN UP ' : 'LOGIN';
     }
   },
   methods: {
@@ -95,17 +95,29 @@ export default {
 
 #header {
   background-color: #000;
+  text-align: center;
+}
+
+#login-content {
+  text-align: center;
 }
 
 h1 {
   margin: 2px;
   padding: 2px;
+  text-align: center;
 }
 
 label {
    font-family: 'Poppins', sans-serif;
    font-weight: 700;
- }
+   display: block;
+ } 
+
+input {
+  margin-bottom: 20px;
+
+}
 
 .sub {
   font-family: 'Source Serif Pro', serif;
@@ -113,6 +125,7 @@ label {
   color: #00AA8F;
   font-style: oblique;
   margin: 0;
+  text-align: center;
 }
 
 #showhide {
@@ -126,17 +139,30 @@ label {
   color: #FF7546;
 }
 
+#inout {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  letter-spacing: .2em;
+  background-color: #FF7546;
+  color: #fff;
+  padding: 10px 60px;
+  border: none;
+}
+
+#inout:active {
+  border: solid 2px rgb(171, 59, 22);
+}
+
 .key {
   margin-top: 10px;
   width: 50%;
 }
 
-
 .stripe {
   width: 100%;
 }
 
-input, button {
+button {
   margin: 10px;
 }
 
