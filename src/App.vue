@@ -59,10 +59,11 @@ font-family: 'Source Serif Pro', serif; */
 body {
   margin-left: 0px;
   margin-right: 0px;
+  margin-top: 0px;
 }
+
 #app { 
-  text-align: center;
-  margin-top: 10px;
+  margin-top: -10px;
   color: #333;
 }
 
@@ -88,6 +89,10 @@ a:hover {
 
 a:active {
   color: #FF7546;
+}
+
+input {
+  border: solid 1px #999;
 }
 
 

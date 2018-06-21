@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="navBar">
     <nav>
       <img id="navlogo" src="../assets/alchemy-connect-logo-bk.png">
       <router-link to="/event">NEW EVENT</router-link>
@@ -18,27 +18,35 @@ export default {
 </script>
 
 <style>
+#navBar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  margin-top: 4%;
+}
+
 #navlogo {
   max-width: 18%;
-  margin-top: -18px;
   margin-right: 0px;
   padding: 0px;
+  margin-top: -18px;
   float: left;
 }
+
 nav {
  background-color: #333;
  display: inline;
- padding: 20px;
+ padding: 18px;
  box-shadow: 0px 0px 5px 4px #ccc;
 }
 nav a {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   text-decoration: none;
-  padding: 0px;
   text-align: center;
-  margin-top: 0px;
   color:#fff;
+
 }
 nav a:active {
   color: #333;

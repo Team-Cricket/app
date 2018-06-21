@@ -56,9 +56,9 @@ export default {
   props: ['user'],
   methods: {
     clearForm() {
-        this.event.name = '';
-        this.event.eventDate = '';
-        this.event.description = '';
+      this.event.name = '';
+      this.event.eventDate = '';
+      this.event.description = '';
     },
 
     handleSubmit() {
@@ -85,15 +85,14 @@ export default {
 button {
   font-size: 18px;
   border-radius: 2px;
-  cursor: pointer;
 }
 input {
   font-size: 16px;
   text-align: center;
-  cursor: pointer;
-  border-radius: 3px;
 }
 label {
-  display: block;
-}
+   font-family: 'Poppins', sans-serif;
+   font-weight: 700;
+   display: block;
+ } 
 </style>
