@@ -44,7 +44,7 @@ export default {
     deleteEvent(event) {
       const id = event.eventId;
       // remove from server
-      return deleteEvent(eventId)
+      return deleteEvent(this.eventId)
         .then(() => {
           // remove from current list of events
           const index = this.events.findIndex(event => event.eventId === id);
