@@ -47,7 +47,7 @@ export default {
   props: ['user'],
   methods: {
     handleDelete(event) {
-      const confirmDelete = confirm('Are you sure you want to delete this event and all associated contacts?');
+      const confirmDelete = confirm('Are you sure you want to delete this event and ' + event.count + ' contacts?');
       if(confirmDelete === true) {
         const id = event.eventId;
         // remove from server

@@ -24,6 +24,14 @@
       </label> 
 
       <label>
+        <router-link :to="`/contact/${event.eventId}`">
+          <button v-if="event.eventId">Add Contact</button>
+        </router-link>
+      </label>
+
+      <label>
+        <br>
+        <!-- <span v-else></span> -->
         <button v-if="!event.eventId" type="submit" @click="handleAdd">Add Event</button>
         <button v-else type="submit" @click="handleUpdate">Update Event</button>
       </label>
