@@ -30,6 +30,13 @@ function getHeaders(hasBody) {
 
 /////////////// EVENTS ///////////////////
 
+export function getEvent(eventId) {
+  return fetch(`${EVENTS_URL}/event/${eventId}`, {
+    headers: getHeaders()
+  })
+    .then(responseHandler);
+}
+
 export function getEvents(userId) {
   return fetch(`${EVENTS_URL}/${userId}`, {
     headers: getHeaders()

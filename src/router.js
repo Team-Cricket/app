@@ -11,6 +11,7 @@ export default new VueRouter({
   routes: [
     { path: '/', component: LoginForm },
     { path: '/event', component: EventForm },
+    { path: '/event/:eventId', component: EventForm },
     { path: '/contact/:id', component: ContactForm },
     { 
       path: '/dashboard', 
@@ -23,4 +24,4 @@ export default new VueRouter({
     },
     { path: '*', redirect: '/' }
   ]
-});
+});  
