@@ -6,7 +6,6 @@
     </section>
 
     <h1>ALCHEMY CONNECT</h1>
-    {{ companies }}
     <p class="sub">Make the most of your networking efforts</p>
 
     <section id="login-content" v-if="!user">
@@ -47,7 +46,7 @@
 </template>
 
 <script>
-import { signUp, signIn, getCompanies } from '../services/api';
+import { signUp, signIn } from '../services/api';
 
 const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -58,23 +57,10 @@ export default {
         email: '',
         password: ''
       },
-      companies: null,
       show: false,
       type: 'signIn',
       error: null,
     };
-  },
-
-  created() {
-    getCompanies()
-      .then(resultCompanies => {
-        this.companies = resultCompanies;
-        this.companies.unshift ('');
-        this.companies.push({ name: 'Add new company', id:0 });
-      })
-      .catch(err => {
-        this.error = err;
-      });
   },
   props: ['onUser', 'user'],
   computed: {
