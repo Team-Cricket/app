@@ -1,9 +1,11 @@
 <template id="contact-template">
-  <section class="contact-form">
-    <h1>Contact Form Component</h1>
-    <h2>Contact Form</h2>
-    <form @submit.prevent="handleSubmit">
+  <div class="contact-form">
+    <h1 class="comp-title">Add Contact</h1>
+     <p class="sub">Fill in some details about the person you just met so you can follow up:</p>
 
+    <pre>{{ error }}</pre>
+    <form @submit.prevent="handleSubmit">
+    
       <label>
         Name:
         <br>
@@ -15,6 +17,7 @@
         Company:
         <br>
           <select v-model="contact.companyId"> 
+            <option disabled value="">Please select one</option>
             <option v-for="company in companies"
             :key="company.id"
             :value="company.id"
@@ -55,12 +58,15 @@
       </label>
       
       <label>
-        <button type="reset">Clear</button>
+        <button class="clear" type="reset">clear form</button>
       </label>
 
     </form>
-    <pre>{{ error }}</pre>
-  </section>
+   
+   <img class="stripe" src="../assets/codestripe.png">
+
+  </div>
+   
 </template>
 
 <script>
@@ -98,19 +104,19 @@ export default {
     },
     handleSubmit() {
       this.error = null;
-      if (this.contact.companyId === 0) {
-        return addCompany ({"name":this.newCompany}) 
-        .then(result => {
-          this.contact.companyId = result.companyId;
-          return addContact(this.contact)
-        }).then(saved => {
-          alert (saved.name + ' added as contact.');
-          this.clearForm();
-          this.populateCompanies();
-        })
-        .catch(err => {
-          this.error = err;
-        });
+      if(this.contact.companyId === 0) {
+        return addCompany ({ 'name':this.newCompany }) 
+          .then(result => {
+            this.contact.companyId = result.companyId;
+            return addContact(this.contact);
+          }).then(saved => {
+            alert (saved.name + ' added as contact.');
+            this.clearForm();
+            this.populateCompanies();
+          })
+          .catch(err => {
+            this.error = err;
+          });
       }
       return addContact(this.contact)
 
@@ -120,7 +126,7 @@ export default {
         })
         .catch(err => {
           this.error = err;
-      });
+        });
     }, 
     populateCompanies() {
       this.error = null;
@@ -139,24 +145,83 @@ export default {
 </script>
 
 <style scoped>
-
-
 .contact-form {
-  margin-top: 50px;
-  font-size: 18px;
-}
-button {
-  font-size: 18px;
-  border-radius: 2px;
-  cursor: pointer;
-}
-input {
-  font-size: 16px;
+  margin-top: 25%;
   text-align: center;
-  cursor: pointer;
-  border-radius: 3px;
 }
+
+.comp-title {
+  background-color:#39499B;
+  color: #fff;
+  padding: 10px 
+}
+
+.sub {
+  font-family: 'Source Serif Pro', serif;
+  font-weight: 400;
+  color: #00AA8F;
+  font-style: oblique;
+  max-width: 300px;
+  margin-left: 12%;
+}
+
+pre {
+  font-family: 'Poppins', sans-serif;
+  color:#FF7546; 
+}
+
+button {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  letter-spacing: .2em;
+  background-color: #FF7546;
+  color: #fff;
+  padding: 10px 10px;
+  border: none;
+  width: 180px;
+}
+
+button:active {
+  background-color: #fff;
+  color: #FF7546;
+}
+
+.clear {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #FF7546;
+  letter-spacing: .2em;
+  background-color: #FFF;
+  border: solid 2px #FF7546 !important;
+  margin: 10px;
+  padding: 10px 10px;
+  border: none;
+  width: 180px;
+}
+
+.clear:active {
+  background-color: rgba(255, 116, 70, 0.283);
+}
+
+input {
+  margin-bottom: 10px;
+  width: 180px;
+  height: 20px;
+}
+
+select {
+  margin-bottom: 10px;
+  width: 180px;
+  height: 20px;
+}
+
 label {
-  display: block;
+   font-family: 'Poppins', sans-serif;
+   font-weight: 700;
+   display: block;
+ } 
+
+ .stripe {
+  width: 100%;
 }
 </style>

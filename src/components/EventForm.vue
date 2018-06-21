@@ -1,6 +1,8 @@
 <template id="event-template">
   <section class="event-form">
-    <h2>Event</h2>
+    <h1 class="comp-title">Networking Event</h1>
+    <p class="sub">Ready to network? Fill in some details about your next networking opportunity:</p>
+    <pre>{{ error }}</pre>
     <form @submit.prevent>
       <label>
         Event Name:
@@ -22,18 +24,19 @@
         <textarea name="body" rows="8" cols="30"  
           v-model="event.description"></textarea>
       </label> 
-
+      
       <label>
-        <button v-if="!event.eventId" type="submit" @click="handleAdd">Add Event</button>
-        <button v-else type="submit" @click="handleUpdate">Update Event</button>
+        <button v-if="!event.eventId" type="submit" @click="handleAdd">ADD EVENT</button>
+        <button v-else type="submit" @click="handleUpdate">UPDATE EVENT</button>
       </label>
       
       <label>
-        <button v-on:click="clearForm" type="button">Clear</button>
+        <button class="clear" v-on:click="clearForm" type="button">clear form</button>
       </label>
 
     </form>
-    <pre>{{ error }}</pre>
+     <img class="stripe" src="../assets/codestripe.png">
+    
   </section>
 </template>
 
@@ -101,20 +104,75 @@ export default {
 
 
 .event-form {
-  margin-top: 50px;
-  font-size: 18px;
-}
-button {
-  font-size: 18px;
-  border-radius: 2px;
-}
-input {
-  font-size: 16px;
+  margin-top: 25%;
   text-align: center;
+}
+
+.comp-title {
+  background-color:#39499B;
+  color: #fff;
+  padding: 10px 
+}
+
+.sub {
+  font-family: 'Source Serif Pro', serif;
+  font-weight: 400;
+  color: #00AA8F;
+  font-style: oblique;
+  max-width: 300px;
+  margin-left: 12%;
+}
+
+pre {
+  font-family: 'Poppins', sans-serif;
+  color:#FF7546; 
+}
+
+button {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  letter-spacing: .2em;
+  background-color: #FF7546;
+  color: #fff;
+  padding: 10px 10px;
+  border: none;
+  width: 180px;
+}
+
+button:active {
+  background-color: #fff;
+  color: #FF7546;
+}
+
+.clear {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #FF7546;
+  letter-spacing: .2em;
+  background-color: #FFF;
+  border: solid 2px #FF7546 !important;
+  margin: 10px;
+  padding: 10px 10px;
+  border: none;
+  width: 180px;
+}
+
+.clear:active {
+  background-color: rgba(255, 116, 70, 0.283);
+}
+
+input {
+  margin-bottom: 20px;
+  width: 180px;
+  height: 20px;
 }
 label {
    font-family: 'Poppins', sans-serif;
    font-weight: 700;
    display: block;
  } 
+
+ .stripe {
+  width: 100%;
+}
 </style>
