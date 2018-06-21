@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <section v-if="user">
+      
       <NavBar
       :user="user"
       :logout="handleLogout"
