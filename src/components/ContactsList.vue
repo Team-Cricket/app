@@ -8,7 +8,9 @@
           :key="contact.contactId"
           >
           <img class="delete-logo" @click="handleDelete(contact)" width="15px" src="../assets/delete-icon.png">
+          <router-link :to="`/contact/${contact.eventId}/${contact.contactId}`">
           <strong>{{ contact.name }}</strong>
+          </router-link>
           <br>
           {{ contact.email }}
         </li>

@@ -63,6 +63,9 @@ export default {
           this.event.eventDate = result.eventDate.substring(0, 10);
           this.event.eventId = result.eventId;
           this.event.description = result.description;
+        })
+        .catch(err => {
+          this.error = err;
         });
     }
   },

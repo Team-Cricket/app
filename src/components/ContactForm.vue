@@ -1,8 +1,7 @@
 <template id="contact-template">
   <section class="contact-form">
-    <h1>Contact Form Component</h1>
-    <h2>Contact Form</h2>
-    <form @submit.prevent="handleSubmit">
+    <h2>Contact</h2>
+    <form @submit.prevent>
 
       <label>
         Name:
@@ -51,7 +50,8 @@
       </label> 
 
       <label>
-        <button type="submit">Add Contact</button>
+        <button v-if="!contact.contactId" type="submit" @click="handleAdd">Add Contact</button>
+        <button v-else type="submit" @click="handleUpdate">Update Contact</button>
       </label>
       
       <label>
@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import { getCompanies, addCompany, addContact } from '../services/api';
+import { getCompanies, addCompany, addContact, getContact, updateContact } from '../services/api';
 
 export default {
   data() {
@@ -79,12 +79,27 @@ export default {
         other: '',
         notes: '',
         userId: this.user.userId,
-        eventId: this.$route.params.id
+        eventId: this.$route.params.eventId,
+        contactId: this.$route.params.contactId
       }
     };
   },
   created() {
+    const id = this.$route.params.contactId;
     this.populateCompanies();
+    if(id) {
+      return getContact(id)
+        .then(result => {
+          this.contact.name = result.name;
+          this.contact.companyId = result.companyId;
+          this.contact.email = result.email;
+          this.contact.other = result.other;
+          this.contact.notes = result.notes;
+        })
+        .catch(err => {
+          this.error = err;
+        });
+    }
   },
   props: ['user', 'event'],
   methods: {
@@ -96,31 +111,52 @@ export default {
       this.contact.notes = '';
       this.newCompany = '';
     },
-    handleSubmit() {
+    handleAdd() {
       this.error = null;
-      if (this.contact.companyId === 0) {
-        return addCompany ({"name":this.newCompany}) 
-        .then(result => {
-          this.contact.companyId = result.companyId;
-          return addContact(this.contact)
-        }).then(saved => {
-          alert (saved.name + ' added as contact.');
-          this.clearForm();
-          this.populateCompanies();
-        })
-        .catch(err => {
-          this.error = err;
-        });
+      if(this.contact.companyId === 0) {
+        return addCompany ({ 'name':this.newCompany }) 
+          .then(result => {
+            this.contact.companyId = result.companyId;
+            return addContact(this.contact);
+          }).then(saved => {
+            alert (saved.name + ' added as contact.');
+            this.clearForm();
+            this.populateCompanies();
+          })
+          .catch(err => {
+            this.error = err;
+          });
       }
       return addContact(this.contact)
-
         .then(saved => {
           alert (saved.name + ' added as contact.');
           this.clearForm();
         })
         .catch(err => {
           this.error = err;
-      });
+        });
+    }, 
+    handleUpdate() {
+      this.error = null;
+      if(this.contact.companyId === 0) {
+        return addCompany ({ 'name':this.newCompany }) 
+          .then(result => {
+            this.contact.companyId = result.companyId;
+            return updateContact(this.contact);
+          }).then(() => {
+            this.$router.push('/dashboard/contacts');
+          })
+          .catch(err => {
+            this.error = err;
+          });
+      }
+      return updateContact(this.contact)
+        .then(() => {
+          this.$router.push('/dashboard/contacts');
+        })
+        .catch(err => {
+          this.error = err;
+        });
     }, 
     populateCompanies() {
       this.error = null;
