@@ -18,22 +18,22 @@ export default {
 
 <style>
 nav {
- background-color: #EFEB3E;
+ background-color: #333;
+ display: inline;
+ padding: 20px;
 }
 nav a {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: bolder;
   text-decoration: none;
   padding: 8px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  margin-top: 60px;
-  color:#00AA8F;
+  margin-top: 0px;
+  color:#fff;
 }
 nav a:hover {
-  color: #fff;
+  color: #EFEB3E;
   background-color: #00AA8F;
 }
 

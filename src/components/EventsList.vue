@@ -9,9 +9,12 @@
         >
           <!-- <router-link :to="`/events/${user.userId}`"> -->
           <router-link :to="`/events`"> 
-            <strong>{{ event.name }}</strong> ({{ event.count }} contacts)<br>
+            <h3>{{ event.name }}</h3> 
+            <h4>{{ event.count }} contacts</h4>
+            <br>
           </router-link>
-          {{ event.description }}<br>&nbsp;
+          <p>{{ event.description }}</p>
+          <hr>
         </li>
       </ul>
     </div>
@@ -58,11 +61,51 @@ export default {
 
 
 <style scoped>
+body {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+h2 {
+  font-family: 'Source Serif Pro', serif;
+  font-weight: 400;
+  color:#00AA8F;
+}
+
+h3 {
+  font-family: 'Source Serif Pro', serif;
+  font-weight: 700;
+  color:#00AA8F;
+}
+
+h4 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color:#00AA8F;
+}
+
+p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  max-width: 80%; 
+}
+
+a {
+  text-decoration: none;
+}
+
 #events {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
 }
+
 div {
   text-align: left;
 }
@@ -70,6 +113,7 @@ div {
 ul {
   list-style-type: none;
 }
+
 li {
   max-width: 375px;
 }

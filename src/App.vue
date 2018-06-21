@@ -4,32 +4,18 @@
       <NavBar
       :user="user"
       :logout="handleLogout"
-      ></NavBar>
+      >
+      </NavBar>
     </section>
-    <router-view :on-user="handleUser" :user="user"/>
-    
-    <section>
-      <router-link to="/">Login</router-link>
-      &nbsp;
-      <router-link to="/event">Event</router-link>
-      &nbsp;
-      <router-link to="/contact">Contact</router-link>
-      &nbsp;
-      <router-link to="/dashboard">Dashboard</router-link>
-      &nbsp;
-      <router-link to="/dashboard/events">Events List</router-link>
-      &nbsp;
-      <router-link to="/dashboard/contacts">Contacts List</router-link> 
-    </section>
-   
 
-    
+    <router-view :on-user="handleUser" :user="user"/>
 
   </div>
 </template>
 
 <script>
 import NavBar from './components/NavBar';
+
 export default {
   name: 'app',
   components: {
@@ -66,12 +52,42 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,400,700|Source+Serif+Pro:400,600');
+/* font-family: 'Poppins', sans-serif;
+font-family: 'Source Serif Pro', serif; */
+body {
+  margin-left: 0px;
+  margin-right: 0px;
 }
+#app { 
+  text-align: center;
+  margin-top: 10px;
+  color: #333;
+}
+
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+h2 {
+  font-family: 'Source Serif Pro', serif;
+  font-weight: 400;
+  color:#00AA8F;
+}
+
+p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+a:hover {
+  color: #FF7546;
+}
+
+a:active {
+  color: #FF7546;
+}
+
+
 </style>
