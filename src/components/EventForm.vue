@@ -29,7 +29,7 @@
       </label>
       
       <label>
-        <button type="reset">Clear</button>
+        <button v-on:click="clearForm" type="button">Clear</button>
       </label>
 
     </form>
@@ -48,23 +48,28 @@ export default {
         userId: this.user.userId,
         name: '',
         eventDate: '',
-        eventId: 3, //Take this out for dynamic data (hard-coded 3)
+        eventId: '',
         description: ''
       }
     };
   },
   props: ['user'],
   methods: {
+    clearForm() {
+        this.event.name = '';
+        this.event.eventDate = '';
+        this.event.description = '';
+    },
+
     handleSubmit() {
       this.error = null;
-      this.$router.push(`/contact/${this.event.eventId}`);
-      // return addEvent(this.event)
-        // .then(saved => {
-        //   this.$router.push(`/contact/${this.event.eventId}`);
-        // })
-        // .catch(err => {
-        //   this.error = err;
-        // });
+      return addEvent(this.event)
+        .then(saved => {
+          this.$router.push(`/contact/${saved.eventId}`);
+        })
+        .catch(err => {
+          this.error = err;
+        });
     }
   }
 };

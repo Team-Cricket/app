@@ -3,12 +3,14 @@
     <h1>Contact Form Component</h1>
     <h2>Contact Form</h2>
     <form @submit.prevent="handleSubmit">
+
       <label>
         Name:
         <br>
         <input type="text" name="name" placeholder="Contact Name" required
           v-model="contact.name">
       </label>
+
       <label>
         Company:
         <br>
@@ -19,18 +21,28 @@
             >{{ company.name }}</option> 
           </select>    
       </label>
+
       <label v-if="contact.companyId===0">
         New Company:
         <br>
         <input type="text" placeholder="New Company"
           v-model="newCompany">
       </label>
+
       <label>
         Email:
         <br>
-        <input type="email" name="email" required placeholder="Email" 
+        <input type="email" name="email" placeholder="Email" 
           v-model="contact.email">
       </label>
+
+      <label>
+        Other contact information:
+        <br>
+        <input type="other" name="other" placeholder="LinkedIn? Phone?" 
+          v-model="contact.other">
+      </label>
+
       <label>
         Notes:
         <br>
@@ -52,8 +64,8 @@
 </template>
 
 <script>
-import { getCompanies } from '../services/api';
-import { addCompany } from '../services/api';
+import { getCompanies, addCompany, addContact} from '../services/api';
+
 export default {
   data() {
     return {
@@ -72,29 +84,55 @@ export default {
     };
   },
   created() {
-    this.error = null;
-    getCompanies()
-      .then(resultCompanies => {
-        this.companies = resultCompanies;
-        this.companies.push({ name: 'Add new company', id:0 });
-      })
-      .catch(err => {
-        this.error = err;
-      });
+    this.populateCompanies();
   },
   props: ['user', 'event'],
   methods: {
+    clearForm() {
+      this.contact.name = '';
+      this.contact.companyId = '';
+      this.contact.email = '';
+      this.contact.other = '';
+      this.contact.notes = '';
+      this.newCompany = '';
+    },
     handleSubmit() {
       this.error = null;
-      
-      return addContact(this.contact)
-        .then(saved => {
-          this.$router.push(`/contacts/${saved.id}`);
+      if (this.contact.companyId === 0) {
+        return addCompany ({"name":this.newCompany}) 
+        .then(result => {
+          this.contact.companyId = result.companyId;
+          return addContact(this.contact)
+        }).then(saved => {
+          alert (saved.name + ' added as contact.');
+          this.clearForm();
+          this.populateCompanies();
         })
         .catch(err => {
           this.error = err;
         });
-    }   
+      }
+      return addContact(this.contact)
+        .then(saved => {
+          alert (saved.name + ' added as contact.');
+          this.clearForm();
+        })
+        .catch(err => {
+          this.error = err;
+      });
+    }, 
+    populateCompanies() {
+      this.error = null;
+      getCompanies()
+        .then(resultCompanies => {
+          this.companies = resultCompanies;
+          this.companies.unshift ('');
+          this.companies.push({ name: 'Add new company', id:0 });
+        })
+        .catch(err => {
+          this.error = err;
+        });
+    } 
   }
 };
 </script>
