@@ -26,6 +26,13 @@
       </label> 
       
       <label>
+        <router-link :to="`/contact/${event.eventId}`">
+          <button v-if="event.eventId">ADD CONTACT</button>
+        </router-link>
+      </label>
+
+      <label>
+        <br>
         <button v-if="!event.eventId" type="submit" @click="handleAdd">ADD EVENT</button>
         <button v-else type="submit" @click="handleUpdate">UPDATE EVENT</button>
       </label>
@@ -66,6 +73,9 @@ export default {
           this.event.eventDate = result.eventDate.substring(0, 10);
           this.event.eventId = result.eventId;
           this.event.description = result.description;
+        })
+        .catch(err => {
+          this.error = err;
         });
     }
   },

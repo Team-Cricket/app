@@ -13,8 +13,8 @@
             <h3>{{ event.name }}</h3> 
             <h4 class="date">{{ event.eventDate.substring(0, 10) }}</h4> 
             <h4>{{ event.count }} contacts</h4>
-            <br>
           </router-link>
+          <br>
           <p>{{ event.description }}</p>
           <hr>
         </li>
@@ -47,7 +47,7 @@ export default {
   props: ['user'],
   methods: {
     handleDelete(event) {
-      const confirmDelete = confirm('Are you sure you want to delete this event and all associated contacts?');
+      const confirmDelete = confirm('Are you sure you want to delete this event and ' + event.count + ' contacts?');
       if(confirmDelete === true) {
         const id = event.eventId;
         // remove from server

@@ -72,6 +72,13 @@ export function deleteEvent(eventId) {
 
 /////////////// CONTACTS /////////////////
 
+export function getContact(contactId) {
+  return fetch(`${CONTACTS_URL}/${contactId}`, {
+    headers: getHeaders()
+  })
+    .then(responseHandler);
+}
+
 export function getContactsForUser(userId) {
   return fetch(`${CONTACTS_URL}/user/${userId}`, {
     headers: getHeaders()

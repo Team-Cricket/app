@@ -8,7 +8,9 @@
           :key="contact.contactId"
           >
           <img class="delete-logo" @click="handleDelete(contact)" width="15px" src="../assets/delete-icon.png">
+          <router-link :to="`/contact/${contact.eventId}/${contact.contactId}`">
           <strong>{{ contact.name }}</strong>
+          </router-link>
           <br>
           {{ contact.email }}
         </li>
@@ -40,7 +42,7 @@ export default {
   props: ['user'],
   methods: {
     handleDelete(contact) {
-      const confirmDelete = confirm('Are you sure you want to delete this contact?');
+      const confirmDelete = confirm('Are you sure you want to delete ' + contact.name + '?');
       if(confirmDelete === true) {
         const id = contact.contactId;
         // remove from server

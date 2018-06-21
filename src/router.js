@@ -12,7 +12,8 @@ export default new VueRouter({
     { path: '/', component: LoginForm },
     { path: '/event', component: EventForm },
     { path: '/event/:eventId', component: EventForm },
-    { path: '/contact/:id', component: ContactForm },
+    { path: '/contact/:eventId', component: ContactForm },
+    { path: '/contact/:eventId/:contactId', component: ContactForm },
     { 
       path: '/dashboard', 
       component: DashboardView,
