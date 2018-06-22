@@ -9,12 +9,12 @@
         >
           <img class="delete-logo" @click="handleDelete(event)" width="15px" src="../assets/delete-icon.png">
           <router-link :to="`/event/${event.eventId}`">
-          <strong>{{ event.name }}</strong> 
-          <div id="details">
-            <h4 class="date">{{ event.eventDate.substring(0, 10) }}</h4> 
-            <br>
-            <h4>contacts: {{ event.count }}</h4>
-          </div>
+            <strong>{{ event.name }}</strong> 
+            <div id="details">
+              <h4 class="date">{{ event.eventDate.substring(0, 10) }}</h4> 
+              <br>
+              <h4>contacts: {{ event.count }}</h4>
+            </div>
           </router-link>
           <br>
           <p>{{ event.description }}</p>
@@ -143,14 +143,15 @@ li {
   list-style: none;
   padding: 0px;
 }
+
 .delete-logo {
   margin-top: 10px;
   margin-right: 5px;
   margin-bottom: 11px;
   cursor: pointer;
 }
+
 hr {
   margin-right: 30px;
 }
-
 </style>

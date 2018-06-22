@@ -1,14 +1,10 @@
 <template id="contact-template">
-
-    
   <div class="contact-form">
     <h1 class="comp-title">Contact</h1>
-     <p class="sub">Add details on who you connected with:</p>
-
-
+    <p class="sub">Add details on who you connected with:</p>
     <pre>{{ error }}</pre>
+
     <form @submit.prevent>
-    
       <label>
         Name:
         <br>
@@ -64,13 +60,9 @@
       <label>
         <button class="clear" type="reset">clear form</button>
       </label>
-
     </form>
-   
    <img class="stripe" src="../assets/codestripe.png">
-
   </div>
-   
 </template>
 
 <script>

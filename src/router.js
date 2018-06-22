@@ -6,7 +6,6 @@ import DashboardView from './components/DashboardView';
 import EventsList from './components/EventsList';
 import ContactsList from './components/ContactsList';
 
-
 export default new VueRouter({
   routes: [
     { path: '/', component: LoginForm },

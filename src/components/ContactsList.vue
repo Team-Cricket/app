@@ -8,18 +8,17 @@
           :key="contact.contactId"
         >
           <router-link :to="`/contact/${contact.eventId}/${contact.contactId}`">
-          <h2>{{ contact.name }}</h2>
+            <h2>{{ contact.name }}</h2>
            </router-link>
           <div id="details">
-          <h4>Email:</h4>
-          <p>{{ contact.email }}</p>
-          <h4>Saved On:</h4>
-          <p>{{ contact.created.substring(0, 10) }}</p>
-          <h4>Event:</h4>
-          <p>{{ contact.eventName }} - {{ contact.eventDate.substring(0, 10) }}</p>
-          <img class="delete-logo" @click="handleDelete(contact)" width="15px" src="../assets/delete-icon.png">
-           <h4 class="delete-label" @click="handleDelete(contact)">Delete Contact</h4>
-         
+            <h4>Email:</h4>
+            <p>{{ contact.email }}</p>
+            <h4>Saved On:</h4>
+            <p>{{ contact.created.substring(0, 10) }}</p>
+            <h4>Event:</h4>
+            <p>{{ contact.eventName }} - {{ contact.eventDate.substring(0, 10) }}</p>
+            <img class="delete-logo" @click="handleDelete(contact)" width="15px" src="../assets/delete-icon.png">
+            <h4 class="delete-label" @click="handleDelete(contact)">Delete Contact</h4>
           </div>
           <hr>
         </li>
@@ -146,7 +145,6 @@ li {
   padding: 0px;
 }
 
-
 hr {
   margin-right: 30px;
 }
@@ -156,5 +154,4 @@ hr {
   font-weight: 700;
   color: #333;
 }
-
 </style>

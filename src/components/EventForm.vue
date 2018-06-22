@@ -43,7 +43,6 @@
 
     </form>
      <img class="stripe" src="../assets/codestripe.png">
-    
   </section>
 </template>
 
@@ -62,8 +61,7 @@ export default {
         description: ''
       }
     };
-  },
-    
+  }, 
   created() {
     const id = this.$route.params.eventId;
     if(id) {
@@ -111,16 +109,17 @@ export default {
 </script>
 
 <style scoped>
-
 .event-form {
   margin-top: 10%;
   text-align: center;
 }
+
 .comp-title {
   background-color:#39499B;
   color: #fff;
   padding: 10px; 
 }
+
 .sub {
   font-family: 'Source Serif Pro', serif;
   font-weight: 400;
@@ -129,10 +128,12 @@ export default {
   max-width: 300px;
   margin-left: 12%;
 }
+
 pre {
   font-family: 'Poppins', sans-serif;
   color:#FF7546; 
 }
+
 button {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
@@ -143,10 +144,12 @@ button {
   border: none;
   width: 180px;
 }
+
 button:active {
   background-color: #fff;
   color: #FF7546;
 }
+
 .clear {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
@@ -159,9 +162,11 @@ button:active {
   border: none;
   width: 180px;
 }
+
 .clear:active {
   background-color: rgba(255, 116, 70, 0.283);
 }
+
 input {
   margin-bottom: 20px;
   padding-left: 5px;
@@ -169,11 +174,13 @@ input {
   height: 20px;
   text-align: center;
 }
+
 label {
    font-family: 'Poppins', sans-serif;
    font-weight: 700;
    display: block;
  } 
+
 .stripe {
   width: 100%;
 }
