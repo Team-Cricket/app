@@ -37,7 +37,7 @@ export default {
 nav {
  background-color: #333;
  display: inline;
- padding: 18px;
+ padding: 18px 12px 18px 12px;
  box-shadow: 0px 0px 5px 4px #ccc;
 }
 nav a {
@@ -48,8 +48,5 @@ nav a {
   color:#fff;
 
 }
-
-
-
 
 </style>

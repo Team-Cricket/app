@@ -6,13 +6,17 @@
         <li
           v-for="contact in contacts"
           :key="contact.contactId"
-          >
+        >
           <img class="delete-logo" @click="handleDelete(contact)" width="15px" src="../assets/delete-icon.png">
           <router-link :to="`/contact/${contact.eventId}/${contact.contactId}`">
           <strong>{{ contact.name }}</strong>
           </router-link>
           <br>
           {{ contact.email }}
+          <br>
+          Saved on: {{ contact.created.substring(0, 10) }}
+          <br>
+          Event: {{ contact.eventName }} - {{ contact.eventDate.substring(0, 10) }}
         </li>
       </ul>
     </div>
@@ -66,19 +70,32 @@ export default {
   flex-flow: row nowrap;
   justify-content: center;
 }
+
 div {
   text-align: left;
 }
 
 ul {
   list-style-type: none;
+  text-decoration: none;
 }
 li {
   max-width: 375px;
-  margin: 10px;
+  list-style-type: none;
+  text-decoration: none;
+  margin-top: 5px;
+  font-family: 'Poppins', sans-serif;
+}
+a {
+  text-decoration: none;
 }
 .delete-logo {
   margin-right: 5px;
   cursor: pointer;
+} 
+strong {
+  list-style-type: none;
+  text-decoration: none;
 }
+
 </style>

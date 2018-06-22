@@ -1,20 +1,19 @@
 <template>
   <div>
     <div id="dashboard-content">
-      <router-link class="router-link" to="/dashboard/events">Events</router-link>
-
+      <router-link class="router-link" to="/dashboard/events">EVENTS</router-link>
       &nbsp;
-      <router-link class="router-link" to="/dashboard/contacts">Contacts</router-link>
-      
+      <router-link class="router-link" to="/dashboard/contacts">CONTACTS</router-link>
     </div>
-    <router-view :user="user" :event="event"/>
+    <div class="event-list">
+      <router-view :user="user" :event="event"/>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   props: ['user', 'event']
-
 };
 </script>
 
@@ -23,19 +22,24 @@ export default {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
+  margin-top: 10%;
 }
 .router-link {
   background-color: #FF7546;
   color: #fff;
-  margin-top: 25%;
   cursor: pointer;
   text-decoration: none;
-  width: 140px;
-  height: 60px;
+  width: 180px;
+  height: 50px;
   text-align: center;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   vertical-align: middle;
-  line-height: 60px;
+  line-height: 50px;
+  letter-spacing: .2em;
 } 
+.router-link:hover {
+  background-color:#39499B;
+}
+
 </style>
