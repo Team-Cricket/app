@@ -6,7 +6,7 @@
         <li
           v-for="contact in contacts"
           :key="contact.contactId"
-          >
+        >
           <img class="delete-logo" @click="handleDelete(contact)" width="15px" src="../assets/delete-icon.png">
           <router-link :to="`/contact/${contact.eventId}/${contact.contactId}`">
           <strong>{{ contact.name }}</strong>
@@ -70,6 +70,7 @@ export default {
   flex-flow: row nowrap;
   justify-content: center;
 }
+
 div {
   text-align: left;
 }
@@ -82,7 +83,7 @@ li {
   max-width: 375px;
   list-style-type: none;
   text-decoration: none;
-  margin-top: 20px;
+  margin-top: 5px;
   font-family: 'Poppins', sans-serif;
 }
 a {
