@@ -174,8 +174,7 @@ input {
 }
 
 .stripe {
-  max-width: 850px;
-  margin: auto;
+  max-width: 100%;
 }
 
 button {
