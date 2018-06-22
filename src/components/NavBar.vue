@@ -48,10 +48,7 @@ nav a {
   color:#fff;
 
 }
-nav a:active {
-  color: #333;
-  background-color: #EFEB3E;
-}
+
 
 
 

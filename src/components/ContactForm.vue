@@ -57,8 +57,8 @@
       </label> 
 
       <label>
-        <button v-if="!contact.contactId" type="submit" @click="handleAdd">Add Contact</button>
-        <button v-else type="submit" @click="handleUpdate">Update Contact</button>
+        <button v-if="!contact.contactId" type="submit" @click="handleAdd">ADD CONTACT</button>
+        <button v-else type="submit" @click="handleUpdate">UPDATE CONTACT</button>
       </label>
       
       <label>
@@ -173,8 +173,8 @@ export default {
       getCompanies()
         .then(resultCompanies => {
           this.companies = resultCompanies;
+          this.companies.push({ name: 'ADD NEW COMPANY', id:0 });
           this.companies.unshift ('');
-          this.companies.push({ name: 'Add new company', id:0 });
         })
         .catch(err => {
           this.error = err;
