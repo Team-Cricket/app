@@ -1,10 +1,10 @@
 <template>
   <div>
     <div id="dashboard-content">
-      <router-link class="router-link" to="/dashboard/events">Events</router-link>
+      <router-link class="router-link" to="/dashboard/events">EVENTS</router-link>
 
       &nbsp;
-      <router-link class="router-link" to="/dashboard/contacts">Contacts</router-link>
+      <router-link class="router-link" to="/dashboard/contacts">CONTACTS</router-link>
       
     </div>
     <router-view :user="user" :event="event"/>
@@ -30,12 +30,18 @@ export default {
   margin-top: 25%;
   cursor: pointer;
   text-decoration: none;
-  width: 140px;
+  width: 180px;
   height: 60px;
   text-align: center;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   vertical-align: middle;
   line-height: 60px;
+  letter-spacing: .2em;
 } 
+
+.router-link:hover {
+  background-color:#39499B;
+}
+
 </style>

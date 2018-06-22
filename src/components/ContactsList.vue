@@ -72,13 +72,25 @@ div {
 
 ul {
   list-style-type: none;
+  text-decoration: none;
 }
 li {
   max-width: 375px;
-  margin: 10px;
+  list-style-type: none;
+  text-decoration: none;
+  margin-top: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+a {
+  text-decoration: none;
 }
 .delete-logo {
   margin-right: 5px;
   cursor: pointer;
+} 
+strong {
+  list-style-type: none;
+  text-decoration: none;
 }
+
 </style>
