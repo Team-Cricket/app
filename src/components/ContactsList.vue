@@ -13,6 +13,10 @@
           </router-link>
           <br>
           {{ contact.email }}
+          <br>
+          Saved on: {{ contact.created.substring(0, 10) }}
+          <br>
+          Event: {{ contact.eventName }} - {{ contact.eventDate.substring(0, 10) }}
         </li>
       </ul>
     </div>
