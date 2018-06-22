@@ -2,7 +2,7 @@
   <div>
     <div id="dashboard-content">
       <router-link class="router-link" to="/dashboard/events">EVENTS</router-link>
-      &nbsp;
+        &nbsp;
       <router-link class="router-link" to="/dashboard/contacts">CONTACTS</router-link>
     </div>
     <div class="event-list">
@@ -24,6 +24,7 @@ export default {
   justify-content: center;
   margin-top: 10%;
 }
+
 .router-link {
   background-color: #FF7546;
   color: #fff;
@@ -38,8 +39,8 @@ export default {
   line-height: 50px;
   letter-spacing: .2em;
 } 
+
 .router-link:hover {
   background-color:#39499B;
 }
-
 </style>

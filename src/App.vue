@@ -1,18 +1,14 @@
 <template>
   <div id="app">
     <section v-if="user">
-      
       <NavBar
       :user="user"
       :logout="handleLogout"
       >
       </NavBar>
     </section>
-
     <router-view :on-user="handleUser" :user="user"/>
-    
   </div>
-  
 </template>
 
 <script>
@@ -49,14 +45,12 @@ export default {
       this.user = null;
     }
   }
-
 };
 </script>
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Poppins:200,400,700|Source+Serif+Pro:400,600');
-/* font-family: 'Poppins', sans-serif;
-font-family: 'Source Serif Pro', serif; */
+
 body {
   margin-left: 0px;
   margin-right: 0px;
@@ -102,6 +96,4 @@ textarea {
 select {
   border: solid 1px #999;
 }
-
-
 </style>
