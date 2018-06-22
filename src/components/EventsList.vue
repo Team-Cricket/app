@@ -7,8 +7,8 @@
           v-for="event in events"
           :key="event.eventId"
         >
-          <!-- <router-link :to="`/events/${user.userId}`"> -->
           <img class="delete-logo" @click="handleDelete(event)" width="15px" src="../assets/delete-icon.png">
+          <router-link :to="`/event/${event.eventId}`">
           <strong>{{ event.name }}</strong> 
           <div id="details">
             <h4 class="date">{{ event.eventDate.substring(0, 10) }}</h4> 
