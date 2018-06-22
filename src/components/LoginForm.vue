@@ -117,12 +117,14 @@ label {
    font-family: 'Poppins', sans-serif;
    font-weight: 700;
    display: block;
+   margin-top: 15px;
  } 
 
 input {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   width: 180px;
   height: 20px;
+  padding-left: 5px;
 
 }
 
@@ -139,6 +141,8 @@ input {
   font-family: 'Poppins', sans-serif;
   color: #999;
   font-size: .8em;
+  margin-top: 0px;
+ 
 }
 
 #login-error {
@@ -153,6 +157,7 @@ input {
   background-color: #FF7546;
   color: #fff;
   padding: 10px 10px;
+  margin-top: 20px;
   border: none;
   width: 180px;
 }
@@ -172,9 +177,6 @@ input {
 
 button {
   margin: 10px;
-}
-
-button {
   font-size: 14px;
 }
 </style>
