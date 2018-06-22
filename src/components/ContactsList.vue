@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { getContactsForUser, deleteContact } from '../services/api';
+import { getContactsForUser, getContactsForEvent, deleteContact } from '../services/api';
 export default {
   data() {
     return {
@@ -35,15 +35,25 @@ export default {
   },
   created() {
     this.error = null;
-    getContactsForUser(this.userId)
-      .then(resultEvents => {
-        this.contacts = resultEvents;
-      })
-      .catch(err => {
-        this.error = err;
-      });
+    if(event) {
+      getContactsForEvent(event.eventId)
+        .then(resultContacts => {
+          this.contacts = resultContacts;
+        })
+        .catch(err => {
+          this.error = err;
+        });
+    } else {
+      getContactsForUser(this.userId)
+        .then(resultContacts => {
+          this.contacts = resultContacts;
+        })
+        .catch(err => {
+          this.error = err;
+        });
+    }
   },
-  props: ['user'],
+  props: ['user', 'event'],
   methods: {
     handleDelete(contact) {
       const confirmDelete = confirm('Are you sure you want to delete ' + contact.name + '?');

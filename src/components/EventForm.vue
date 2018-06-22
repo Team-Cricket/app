@@ -42,13 +42,17 @@
       </label>
 
     </form>
-     <img class="stripe" src="../assets/codestripe.png">
+
+    <ContactsList :event="event" :user="user"></ContactsList>
+
+    <img class="stripe" src="../assets/codestripe.png">
     
   </section>
 </template>
 
 <script>
 import { addEvent, getEvent, updateEvent } from '../services/api';
+import ContactsList from './ContactsList';
 
 export default {
   data() {
@@ -62,6 +66,9 @@ export default {
         description: ''
       }
     };
+  },
+  components: {
+    ContactsList
   },
     
   created() {
