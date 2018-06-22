@@ -1,7 +1,7 @@
 <template id="event-template">
   <section class="event-form">
     <h1 class="comp-title">Networking Event</h1>
-    <p class="sub">Ready to network? Fill in some details about your next networking opportunity:</p>
+    <p class="sub">Fill in some details about your networking opportunity:</p>
     <pre>{{ error }}</pre>
     <form @submit.prevent>
       <label>
@@ -114,14 +114,14 @@ export default {
 
 
 .event-form {
-  margin-top: 25%;
+  margin-top: 10%;
   text-align: center;
 }
 
 .comp-title {
   background-color:#39499B;
   color: #fff;
-  padding: 10px 
+  padding: 10px; 
 }
 
 .sub {
@@ -176,6 +176,7 @@ input {
   width: 180px;
   height: 20px;
 }
+
 label {
    font-family: 'Poppins', sans-serif;
    font-weight: 700;

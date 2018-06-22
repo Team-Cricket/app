@@ -60,11 +60,10 @@ font-family: 'Source Serif Pro', serif; */
 body {
   margin-left: 0px;
   margin-right: 0px;
-  margin-top: 0px;
+  margin-top: 10px;
 }
 
 #app { 
-  margin-top: -10px;
   color: #333;
 }
 

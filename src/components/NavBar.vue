@@ -19,11 +19,11 @@ export default {
 
 <style>
 #navBar {
-  position: fixed;
+  position: relative;
   top: 0;
   right: 0;
   width: 100%;
-  margin-top: 4%;
+  margin-top: 0px;
 }
 
 #navlogo {
@@ -48,10 +48,7 @@ nav a {
   color:#fff;
 
 }
-nav a:active {
-  color: #333;
-  background-color: #EFEB3E;
-}
+
 
 
 

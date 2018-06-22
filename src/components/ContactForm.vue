@@ -2,8 +2,8 @@
 
     
   <div class="contact-form">
-    <h1 class="comp-title">Add Contact</h1>
-     <p class="sub">Fill in some details about the person you just met so you can follow up:</p>
+    <h1 class="comp-title">Contact</h1>
+     <p class="sub">Fill in some details about the person you connected with:</p>
 
 
     <pre>{{ error }}</pre>
@@ -57,8 +57,8 @@
       </label> 
 
       <label>
-        <button v-if="!contact.contactId" type="submit" @click="handleAdd">Add Contact</button>
-        <button v-else type="submit" @click="handleUpdate">Update Contact</button>
+        <button v-if="!contact.contactId" type="submit" @click="handleAdd">ADD CONTACT</button>
+        <button v-else type="submit" @click="handleUpdate">UPDATE CONTACT</button>
       </label>
       
       <label>
@@ -173,8 +173,8 @@ export default {
       getCompanies()
         .then(resultCompanies => {
           this.companies = resultCompanies;
+          this.companies.push({ name: 'ADD NEW COMPANY', id:0 });
           this.companies.unshift ('');
-          this.companies.push({ name: 'Add new company', id:0 });
         })
         .catch(err => {
           this.error = err;
@@ -186,7 +186,7 @@ export default {
 
 <style scoped>
 .contact-form {
-  margin-top: 25%;
+  margin-top: 10%;
   text-align: center;
 }
 
@@ -252,7 +252,9 @@ input {
 select {
   margin-bottom: 10px;
   width: 180px;
-  height: 20px;
+  height: 24px;
+  border-radius: 0px;
+  background-color: #fff;
 }
 
 label {
