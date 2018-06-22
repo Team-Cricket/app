@@ -1,4 +1,6 @@
-const URL = 'http://localhost:3000/api';
+require('dotenv').config();
+
+const URL = '/api';
 const EVENTS_URL = `${URL}/events`;
 const CONTACTS_URL = `${URL}/contacts`;
 const AUTH_URL = `${URL}/auth`;
