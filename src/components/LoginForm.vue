@@ -96,6 +96,8 @@ export default {
 #header {
   background-color: #000;
   text-align: center;
+  max-width: 850px;
+  margin: auto;
 }
 
 #login-content {
@@ -162,12 +164,13 @@ input {
 }
 
 .key {
-  margin-top: 10px;
-  width: 50%;
+  margin: auto;
+  max-width: 200px;
 }
 
 .stripe {
-  width: 100%;
+  max-width: 850px;
+  margin: auto;
 }
 
 button {

@@ -13,7 +13,7 @@
           <div id="details">
             <h4 class="date">{{ event.eventDate.substring(0, 10) }}</h4> 
             <br>
-            <h4>{{ event.count }} contact</h4>
+            <h4>contacts: {{ event.count }}</h4>
           </div>
           </router-link>
           <br>
