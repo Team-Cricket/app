@@ -36,7 +36,8 @@ export default {
   created() {
     this.error = null;
     if(event) {
-      getContactsForEvent(event.eventId)
+      console.log ('getting contacts for event', event);
+      getContactsForEvent(this.event.eventId)
         .then(resultContacts => {
           this.contacts = resultContacts;
         })
@@ -44,7 +45,8 @@ export default {
           this.error = err;
         });
     } else {
-      getContactsForUser(this.userId)
+      console.log ('getting contacts for user', user);
+      getContactsForUser(this.user.userId)
         .then(resultContacts => {
           this.contacts = resultContacts;
         })
