@@ -30,22 +30,20 @@ export default {
     return {
       contacts: null,
       error: null,
-      userId: this.user.userId
+      eventId: this.$route.params.eventId
     };
   },
   created() {
     this.error = null;
-    if(event) {
-      console.log ('getting contacts for event', event);
-      getContactsForEvent(this.event.eventId)
+    if(this.eventId) { // if this contactList instance is the child of an event, get contacts for the event
+      getContactsForEvent(this.eventId)
         .then(resultContacts => {
           this.contacts = resultContacts;
         })
         .catch(err => {
           this.error = err;
         });
-    } else {
-      console.log ('getting contacts for user', user);
+    } else if (this.$route.path !== '/event') { // otherwise, get all contacts for the user ONLY if this is not the child of a new event
       getContactsForUser(this.user.userId)
         .then(resultContacts => {
           this.contacts = resultContacts;
@@ -55,7 +53,7 @@ export default {
         });
     }
   },
-  props: ['user', 'event'],
+  props: ['user'],
   methods: {
     handleDelete(contact) {
       const confirmDelete = confirm('Are you sure you want to delete ' + contact.name + '?');

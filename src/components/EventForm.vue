@@ -43,7 +43,7 @@
 
     </form>
 
-    <ContactsList :event="event" :user="user"></ContactsList>
+    <ContactsList :user="user"></ContactsList>
 
     <img class="stripe" src="../assets/codestripe.png">
     
