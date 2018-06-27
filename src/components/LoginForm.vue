@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <section id="header">
       <img class="key" src="../assets/alchemy-connect-logo.png">
     </section>
@@ -13,35 +12,35 @@
         {{ error }}
       </p>
       <p v-else>
-      
-      <form @submit.prevent="handleSubmit">
-        <label>Email:</label>
-        <input v-model="credentials.email">
-        
-        <label>Password:</label>
-        <input
-        :type="show ? 'text' : 'password'" 
-        v-model="credentials.password">
-        <br>
-        <button id="showhide" type="button" @click="show = !show"
-        >show/hide password
-        </button>
-        <br>
-        <button id="inout" type="submit">
-          {{ label }}
-        </button>
 
-        <p v-if="isSignUp">
-          Have an account? Click <strong @click="type = isSignUp ? 'signIn' : 'signUp'">here</strong> to login!
-        </p>
+        <form @submit.prevent="handleSubmit">
+          <label>Email:</label>
+          <input v-model="credentials.email">
+          
+          <label>Password:</label>
+          <input
+          :type="show ? 'text' : 'password'" 
+          v-model="credentials.password">
+          <br>
 
-        <p v-else>
-          New user? Click <strong  @click="type = isSignUp ? 'signIn' : 'signUp'">here</strong> to sign up!
-        </p>
-      </form>
+          <button id="showhide" type="button" @click="show = !show"
+          >show/hide password
+          </button>
+          <br>
+
+          <button id="inout" type="submit">
+            {{ label }}
+          </button>
+
+          <p v-if="isSignUp">
+            Have an account? Click <strong @click="type = isSignUp ? 'signIn' : 'signUp'">here</strong> to login!
+          </p>
+          <p v-else>
+            New user? Click <strong  @click="type = isSignUp ? 'signIn' : 'signUp'">here</strong> to sign up!
+          </p>
+        </form>
     </section>
     <img class="stripe" src="../assets/codestripe.png">
-
   </div>
 </template>
 
@@ -77,7 +76,6 @@ export default {
         this.error = 'Please enter a valid email address';
         return;
       }
-
       this.error = null;
       const action = this.isSignUp ? signUp : signIn;
       action(this.credentials)
@@ -92,10 +90,11 @@ export default {
 </script>
 
 <style scoped>
-
 #header {
   background-color: #000;
   text-align: center;
+  max-width: 850px;
+  margin: auto;
 }
 
 #login-content {
@@ -117,12 +116,14 @@ label {
    font-family: 'Poppins', sans-serif;
    font-weight: 700;
    display: block;
+   margin-top: 15px;
  } 
 
 input {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   width: 180px;
   height: 20px;
+  padding-left: 5px;
 
 }
 
@@ -139,6 +140,8 @@ input {
   font-family: 'Poppins', sans-serif;
   color: #999;
   font-size: .8em;
+  margin-top: 0px;
+ 
 }
 
 #login-error {
@@ -153,6 +156,7 @@ input {
   background-color: #FF7546;
   color: #fff;
   padding: 10px 10px;
+  margin-top: 20px;
   border: none;
   width: 180px;
 }
@@ -162,19 +166,16 @@ input {
 }
 
 .key {
-  margin-top: 10px;
-  width: 50%;
+  margin: auto;
+  max-width: 200px;
 }
 
 .stripe {
-  width: 100%;
+  max-width: 100%;
 }
 
 button {
   margin: 10px;
-}
-
-button {
   font-size: 14px;
 }
 </style>

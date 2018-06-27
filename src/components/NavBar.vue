@@ -37,16 +37,15 @@ export default {
 nav {
  background-color: #333;
  display: inline;
- padding: 18px 12px 18px 12px;
+ padding: 18px 10px 18px 10px;
  box-shadow: 0px 0px 5px 4px #ccc;
 }
+
 nav a {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   text-decoration: none;
   text-align: center;
   color:#fff;
-
 }
-
 </style>

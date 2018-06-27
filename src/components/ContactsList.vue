@@ -7,16 +7,20 @@
           v-for="contact in contacts"
           :key="contact.contactId"
         >
-          <img class="delete-logo" @click="handleDelete(contact)" width="15px" src="../assets/delete-icon.png">
           <router-link :to="`/contact/${contact.eventId}/${contact.contactId}`">
-          <strong>{{ contact.name }}</strong>
-          </router-link>
-          <br>
-          {{ contact.email }}
-          <br>
-          Saved on: {{ contact.created.substring(0, 10) }}
-          <br>
-          Event: {{ contact.eventName }} - {{ contact.eventDate.substring(0, 10) }}
+            <h2>{{ contact.name }}</h2>
+           </router-link>
+          <div id="details">
+            <h4>Email:</h4>
+            <p>{{ contact.email }}</p>
+            <h4>Saved On:</h4>
+            <p>{{ contact.created.substring(0, 10) }}</p>
+            <h4>Event:</h4>
+            <p>{{ contact.eventName }} - {{ contact.eventDate.substring(0, 10) }}</p>
+            <img class="delete-logo" @click="handleDelete(contact)" width="15px" src="../assets/delete-icon.png">
+            <h4 class="delete-label" @click="handleDelete(contact)">Delete Contact</h4>
+          </div>
+          <hr>
         </li>
       </ul>
     </div>
@@ -70,11 +74,67 @@ export default {
       }
     }
   }
-
 };
 </script>
 
 <style scoped>
+strong {
+  font-family: 'Source Serif Pro', serif;
+  font-weight: 900;
+  font-size: 16px;
+  color: #333;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding: 5px 30px 5px 5px;
+  text-decoration: none;
+  float: right;
+  max-width: 60%;
+  letter-spacing: .05em; 
+  border: solid #00AA8F;
+  border-width: 2px 0px 0px 2px;
+}
+
+h2:hover {
+  color:#FF7546;
+}
+
+body {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+h2 {
+  font-family: 'Source Serif Pro', serif;
+  font-weight: 400;
+  color:#00AA8F;
+}
+
+h4 {
+  font-family: 'Source Serif Pro', serif;
+  font-weight: 900;
+  color:#00aa8f;
+  display: inline;
+}
+
+p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  max-width: 92%; 
+  margin: 0px;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  width: 90px;
+}
+
 #contacts {
   display: flex;
   flex-flow: row nowrap;
@@ -87,25 +147,21 @@ div {
 
 ul {
   list-style-type: none;
-  text-decoration: none;
-}
-li {
-  max-width: 375px;
-  list-style-type: none;
-  text-decoration: none;
-  margin-top: 5px;
-  font-family: 'Poppins', sans-serif;
-}
-a {
-  text-decoration: none;
-}
-.delete-logo {
-  margin-right: 5px;
-  cursor: pointer;
-} 
-strong {
-  list-style-type: none;
-  text-decoration: none;
+  padding-left: 30px;
 }
 
+li {
+  list-style: none;
+  padding: 0px;
+}
+
+hr {
+  margin-right: 30px;
+}
+
+.delete-label {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #333;
+}
 </style>

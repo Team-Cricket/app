@@ -1,14 +1,10 @@
 <template id="contact-template">
-
-    
   <div class="contact-form">
     <h1 class="comp-title">Contact</h1>
-     <p class="sub">Fill in some details about the person you connected with:</p>
-
-
+    <p class="sub">Add details on who you connected with:</p>
     <pre>{{ error }}</pre>
+
     <form @submit.prevent>
-    
       <label>
         Name:
         <br>
@@ -52,7 +48,7 @@
       <label>
         Notes:
         <br>
-        <textarea name="body" rows="8" cols="30"  
+        <textarea name="body" rows="8" cols="32"  
           v-model="contact.notes" placeholder="Notes Notes Notes"></textarea>
       </label> 
 
@@ -64,13 +60,9 @@
       <label>
         <button class="clear" type="reset">clear form</button>
       </label>
-
     </form>
-   
    <img class="stripe" src="../assets/codestripe.png">
-
   </div>
-   
 </template>
 
 <script>
@@ -193,7 +185,8 @@ export default {
 .comp-title {
   background-color:#39499B;
   color: #fff;
-  padding: 10px 
+  height: 50px;
+  margin-bottom: 10px;
 }
 
 .sub {
@@ -201,8 +194,8 @@ export default {
   font-weight: 400;
   color: #00AA8F;
   font-style: oblique;
-  max-width: 300px;
-  margin-left: 12%;
+  text-align: center;
+  margin: 0px;
 }
 
 pre {
@@ -244,14 +237,15 @@ button:active {
 }
 
 input {
-  margin-bottom: 10px;
-  width: 180px;
+  margin-bottom: 8px;
+  width: 200px;
   height: 20px;
+  padding-left: 5px;
 }
 
 select {
   margin-bottom: 10px;
-  width: 180px;
+  width: 200px;
   height: 24px;
   border-radius: 0px;
   background-color: #fff;
@@ -261,6 +255,7 @@ label {
    font-family: 'Poppins', sans-serif;
    font-weight: 700;
    display: block;
+   margin-top: 0px;
  } 
 
  .stripe {
